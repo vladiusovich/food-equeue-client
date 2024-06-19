@@ -29,7 +29,7 @@ module.exports = {
             directory: path.join(__dirname, 'dist')
         },
         compress: true,
-        port: 9000,
+        port: 3005,
         open: true, // Automatically open the browser
         hot: true   // Enable hot module replacement
     }
