@@ -46,6 +46,8 @@ module.exports = {
         },
         compress: true,
         port: 3005,
+        publicPath: '/',
+        historyApiFallback: true,
         open: false, // Automatically open the browser
         hot: true   // Enable hot module replacement
     },

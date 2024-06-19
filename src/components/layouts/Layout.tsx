@@ -1,15 +1,11 @@
 import React from "react";
 import S from "./Layout.styled";
+import { Outlet } from "react-router-dom";
 
-interface Props {
-    children: React.ReactNode;
-}
-
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC = () => {
     return (
         <S.container>
-            {/* <Outlet /> */}
-            {children}
+            <Outlet />
         </S.container>
     );
 };

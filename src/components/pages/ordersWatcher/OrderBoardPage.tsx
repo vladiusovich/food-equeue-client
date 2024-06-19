@@ -2,7 +2,7 @@ import typography from "@typography";
 import UI from "@ui";
 import React from "react";
 
-const OrdersWatcher: React.FC = () => {
+const OrderBoardPage: React.FC = () => {
       return (
             <UI.Stack direction="column" gap={1}>
                   <typography.bold>OrdersWatcher</typography.bold>
@@ -11,4 +11,4 @@ const OrdersWatcher: React.FC = () => {
       );
 }
 
-export default OrdersWatcher;
+export default OrderBoardPage;
