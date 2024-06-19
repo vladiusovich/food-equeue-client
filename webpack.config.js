@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const basePath = "./src";
+
 module.exports = {
     entry: './src/index.tsx',
     output: {
@@ -8,7 +10,21 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js']
+        extensions: ['.ts', '.tsx', '.js'],
+        alias: {
+            '@ui': path.resolve(__dirname, `${basePath}/components/ui`),
+            '@api': path.resolve(__dirname, `${basePath}/api`),
+            '@type': path.resolve(__dirname, `${basePath}/types`),
+            '@hook': path.resolve(__dirname, `${basePath}/hooks`),
+            '@styles': path.resolve(__dirname, `${basePath}/styles`),
+            '@typography': path.resolve(__dirname, `${basePath}/styles/typography/index`),
+            '@mixins': path.resolve(__dirname, `${basePath}/styles/typography/Typography.styled`),
+            '@helpers': path.resolve(__dirname, `${basePath}/helpers`),
+            '@common': path.resolve(__dirname, `${basePath}/components/common`),
+            '@device': path.resolve(__dirname, `${basePath}/styles/media/device`),
+            '@resources': path.resolve(__dirname, `${basePath}/resources`),
+            '@config': path.resolve(__dirname, `${basePath}/config/appConfig`),
+        }
     },
     module: {
         rules: [
@@ -30,7 +46,7 @@ module.exports = {
         },
         compress: true,
         port: 3005,
-        open: true, // Automatically open the browser
+        open: false, // Automatically open the browser
         hot: true   // Enable hot module replacement
-    }
+    },
 };

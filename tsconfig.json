@@ -14,7 +14,40 @@
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "sourceMap": true,
+        "paths": {
+            "@ui": [
+                "./src/components/ui/index"
+            ],
+            "@typography": [
+                "./src/styles/typography/index"
+            ],
+            "@mixins": [
+                "./src/styles/typography/Typography.styled"
+            ],
+            "@type/*": [
+                "./src/types/*"
+            ],
+            "@hook/*": [
+                "./src/hooks/*"
+            ],
+            "@styles/*": [
+                "./src/styles/*"
+            ],
+            "@api/*": [
+                "./src/api/*"
+            ],
+            "@helpers/*": [
+                "./src/helpers/*"
+            ],
+            "@common/*": [
+                "./src/components/common/*"
+            ],
+            "@resources": [
+                "./src/resources/*"
+            ],
+        },
     },
     "include": [
         "src"

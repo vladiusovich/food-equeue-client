@@ -1,10 +1,11 @@
 import React from "react";
 import Layout from "./layouts/Layout";
+import MainPage from "./pages/main/MainPage";
 
 const App: React.FC = () => {
 	return (
 		<Layout>
-			<h1>Hello, React with TypeScript!</h1>
+			<MainPage />
 		</Layout>
 	);
 }
