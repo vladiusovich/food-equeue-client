@@ -11,16 +11,13 @@ const colors: ColorPaletteType = {
 };
 
 const theme: ThemeType = {
-    defaultTheme: "light",
-    light: {
-        colors: {
-            typo: colors,
-            background: colors,
-            border: {
-                ...colors,
-                focus: "rgba(43, 141, 255)"
-            },
-        }
+    colors: {
+        typo: colors,
+        background: colors,
+        border: {
+            ...colors,
+            focus: "rgba(43, 141, 255)"
+        },
     },
     borderRadius: {
         regular: "8px"

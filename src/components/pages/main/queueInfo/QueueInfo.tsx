@@ -9,7 +9,7 @@ const data = {
 
 const QueueInfo: React.FC = () => {
 	return (
-		<UI.Stack direction="column" gap={1}>
+		<UI.Stack direction="column" gap={2}>
 			<UI.Stack direction="row" gap={1} justifyContent="space-around">
 				<UI.Stack direction="column" gap={1}>
 					<QueueItem title="Count:" value={data.inProgress + data.ready} />

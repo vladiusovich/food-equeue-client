@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
         font-size: 16px;
         line-height: 160%;
 
-        background-color: ${({ theme }) => theme.light.colors.background.highest};
+        background-color: ${({ theme }) => theme.colors.background.highest};
     }
 
     input:-webkit-autofill,

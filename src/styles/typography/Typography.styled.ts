@@ -68,7 +68,7 @@ const fonts = {
         font-weight: 600;
     `,
     gray: css`
-        color: ${({ theme }) => theme.light.colors.typo.medium};
+        color: ${({ theme }) => theme.colors.typo.medium};
     `,
     grayBold: css`
     `,
