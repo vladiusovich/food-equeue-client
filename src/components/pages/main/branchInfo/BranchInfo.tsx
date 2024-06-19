@@ -4,9 +4,9 @@ import React from "react";
 
 const BranchInfo: React.FC = () => {
 	return (
-		<UI.Stack direction="column" gap={1}>
-			<typography.bold>Client Info</typography.bold>
-			<UI.Skeleton />
+		<UI.Stack direction="column" gap={0.5} alignItems="center">
+			<typography.bold>Chemi chachpuri</typography.bold>
+			<typography.xsmall>Pipiupi street 14/3</typography.xsmall>
 		</UI.Stack>
 	);
 }

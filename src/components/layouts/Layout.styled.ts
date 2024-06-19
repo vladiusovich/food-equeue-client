@@ -6,7 +6,7 @@ const S = {
         max-width: 1300px;
         min-height: 100vh;
         box-sizing: border-box;
-        margin: 0 auto;
+        margin: 20px 10px;
     `,
 };
 

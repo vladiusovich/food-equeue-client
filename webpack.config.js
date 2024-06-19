@@ -32,7 +32,28 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'babel-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                    },
+                    {
+                        loader: "react-svg-loader",
+                        options: {
+                            jsx: true,
+                            svgo: {
+                                plugins: [
+                                    {
+                                        removeViewBox: false,
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                ],
+            },
         ]
     },
     plugins: [
@@ -46,8 +67,6 @@ module.exports = {
         },
         compress: true,
         port: 3005,
-        publicPath: '/',
-        historyApiFallback: true,
         open: false, // Automatically open the browser
         hot: true   // Enable hot module replacement
     },

@@ -2,8 +2,12 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     body {
-        font: normal 400 32px 'Public Sans', sans-serif !important;
-        line-height: 140%;
+        font-family: "Inter", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 160%;
+
         background-color: ${({ theme }) => theme.light.colors.background.highest};
     }
 

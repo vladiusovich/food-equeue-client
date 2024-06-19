@@ -16,37 +16,32 @@ const fonts = {
         font-size: 40px;
         line-height: 140%;
     `,
-
     h4: css`
         font-size: 22px;
         font-weight: 600;
         line-height: 140%;
     `,
-
     h5: css`
         font-weight: 600;
         font-size: 20px;
         line-height: 140%;
     `,
-
     h6: css` // bt_txt
         font-weight: 400;
         font-size: 18px;
         line-height: normal;
     `,
-
     header: css`
         font-size: 32px;
         font-weight: 400;
         line-height: 140%;
     `,
-
     large: css`
         font-weight: 400;
         font-size: 20px;
         line-height: 160%;
     `,
-    default: css` // txt_card
+    default: css`
         font-weight: 400;
         font-size: 16px;
         line-height: 160%;
