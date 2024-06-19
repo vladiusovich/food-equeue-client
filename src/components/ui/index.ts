@@ -9,6 +9,8 @@ import Button from "@mui/material/Button";
 import IconButton from "./iconButton/IconButton";
 
 import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+
 
 export * from "@mui/material/Stack";
 export * from "@mui/material/Unstable_Grid2/Grid2";
@@ -20,6 +22,7 @@ export * from "@mui/material/Button";
 export * from "./iconButton/IconButton";
 
 export * from '@mui/material/Divider';
+export * from '@mui/material/Paper';
 
 const UI = {
     Stack,
@@ -31,6 +34,7 @@ const UI = {
     Button,
     IconButton,
     Divider,
+    Paper,
 };
 
 export default UI;
