@@ -4,7 +4,6 @@ import BranchInfo from "./branchInfo/BranchInfo";
 import QueueInfo from "./queueInfo/QueueInfo";
 import ClientInfo from "./clientInfo/ClientInfo";
 import ExecutionTimeInfo from "./executionTimeInfo/ExecutionTimeInfo";
-import useSocket from "@hook/useSocket";
 
 const MainPage: React.FC = () => {
       return (
