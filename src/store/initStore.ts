@@ -1,10 +1,17 @@
 import AppStoreType from "./AppStoreType";
-import Todo from "./stories/Todo";
+import { socket } from '../socket';
+import BranchStore from "./stories/BranchStore";
+import OrdersStore from "./stories/OrdersStore";
+import UserStore from "./stories/UserStore";
 
-const todo = new Todo("Buy milk");
+const user = new UserStore();
+const branch = new BranchStore();
+const orders = new OrdersStore(socket);
 
 const appStore: AppStoreType = {
-    todo
+    user,
+    branch,
+    orders
 };
 
 export default appStore;

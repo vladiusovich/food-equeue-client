@@ -1,29 +1,23 @@
 import UI from "@ui";
-import React, { useState } from "react";
+import React from "react";
 import QueueItem from "./QueueItem/QueueItem";
-import useSocket from "@hook/useSocket";
-import OrdersStatus from "@type/orders/OrdersStatus";
 import QueueInfoSkeleton from "./QueueInfoSkeleton";
+import useAppStore from "@hook/useAppStore";
+import { observer } from "mobx-react-lite";
 
 const QueueInfo: React.FC = () => {
-	const [status, setStatus] = useState<OrdersStatus | null>(null);
+	const store = useAppStore();
 
-	const { isConnected, setListner } = useSocket();
-
-	const handleUpdate = (event: OrdersStatus) => {
-		setStatus({ ...event })
-	}
-
-	setListner("customer.orders.updated", handleUpdate);
-
-	const inProgress = status?.inProgress?.length ?? 0;
-	const ready = status?.ready?.length ?? 0;
-
-	if (!isConnected || status === null) {
+	if (!store.orders.isConnected || store.orders.data === null) {
 		return (
 			<QueueInfoSkeleton />
 		);
 	}
+
+	const ordersStatus = store.orders.data;
+
+	const inProgress = ordersStatus?.inProgress?.length ?? 0;
+	const ready = ordersStatus?.ready?.length ?? 0;
 
 	return (
 		<UI.Stack direction="column" gap={2}>
@@ -44,4 +38,4 @@ const QueueInfo: React.FC = () => {
 	);
 }
 
-export default QueueInfo;
+export default observer(QueueInfo);
