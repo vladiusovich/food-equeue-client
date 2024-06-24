@@ -1,8 +1,14 @@
+import useAppStore from "@hook/useAppStore";
 import typography from "@typography";
 import UI from "@ui";
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 const ExecutionTimeInfo: React.FC = () => {
+	const store = useAppStore();
+
+	const time = store.orders.executionTime.time;
+
 	return (
 		<UI.Stack direction="column" gap={3} alignItems="center">
 			<typography.small>Average waiting time</typography.small>
@@ -10,7 +16,7 @@ const ExecutionTimeInfo: React.FC = () => {
 				<UI.CircularProgress size="6rem" thickness={2.5} />
 				<UI.Stack direction="column" gap={0.5}>
 					<UI.Stack direction="row" gap={1} alignItems="baseline">
-						<typography.h1>5</typography.h1>
+						<typography.h1>{time}</typography.h1>
 						<typography.h5>min</typography.h5>
 					</UI.Stack>
 				</UI.Stack>
@@ -19,4 +25,4 @@ const ExecutionTimeInfo: React.FC = () => {
 	);
 }
 
-export default ExecutionTimeInfo;
+export default observer(ExecutionTimeInfo);

@@ -1,20 +1,20 @@
 import { makeObservable, observable, action, runInAction, computed } from "mobx"
 import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
 
-class OrdersStore {
+class ExecutionTimeStore {
     private apiProvider: SocketApiProvider;
 
     constructor(apiProvider: SocketApiProvider) {
         makeObservable(this, {
-            ordersStatus: computed,
+            time: computed,
         });
 
         this.apiProvider = apiProvider;
     }
 
-    public get ordersStatus() {
-        return this.apiProvider.data.ordersStatus;
+    public get time() {
+        return this.apiProvider.data.executionTime;
     }
 }
 
-export default OrdersStore;
+export default ExecutionTimeStore;

@@ -24,7 +24,7 @@ class SocketApiProvider {
         this.initHandlers();
     }
 
-    initHandlers() {
+    private initHandlers() {
         customerEvents.forEach((event) => {
             const handler = this.initHandler(event);
             this.socket.on(event, (data: any) => handler(data));
@@ -35,11 +35,11 @@ class SocketApiProvider {
         return this.socket.connected;
     }
 
-    connectedHandler() {
+    private connectedHandler() {
         console.debug("Connected");
     }
 
-    disconnectedHandler() {
+    private disconnectedHandler() {
         console.debug("Disconnected");
     }
 

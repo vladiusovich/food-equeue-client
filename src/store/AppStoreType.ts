@@ -1,6 +1,6 @@
-import BranchStore from "./stories/BranchStore";
-import OrdersStore from "./stories/OrdersStore";
-import UserStore from "./stories/UserStore";
+import BranchStore from "./stores/BranchStore";
+import OrdersStore from "./stores/OrdersStore";
+import UserStore from "./stores/UserStore";
 
 interface AppStoreType {
     user: UserStore;
