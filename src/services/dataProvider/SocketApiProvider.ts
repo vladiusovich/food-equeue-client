@@ -3,14 +3,12 @@ import OrdersStatus from "@type/orders/OrdersStatus";
 import CustomerEventType, { customerEvents } from "@type/events/CustomerEventType";
 
 interface DataSource {
-    ordersStatus: OrdersStatus;
-    executionTime: number;
+    ordersStatus?: OrdersStatus;
+    executionTime?: number;
 }
 
-// todo: refactor
 class SocketApiProvider {
     private socket: Socket;
-
     public data: DataSource = {} as DataSource;
 
     constructor(socket: Socket) {
@@ -19,15 +17,14 @@ class SocketApiProvider {
     }
 
     private initSocket() {
-        this.socket.on('connect', () => this.connectedHandler());
-        this.socket.on('disconnect', () => this.disconnectedHandler());
-        this.initHandlers();
+        this.socket.on('connect', this.handleConnect);
+        this.socket.on('disconnect', this.handleDisconnect);
+        this.initEventHandlers();
     }
 
-    private initHandlers() {
+    private initEventHandlers() {
         customerEvents.forEach((event) => {
-            const handler = this.initHandler(event);
-            this.socket.on(event, (data: any) => handler(data));
+            this.socket.on(event, (data: any) => this.handleEvent(event, data));
         });
     }
 
@@ -35,37 +32,34 @@ class SocketApiProvider {
         return this.socket.connected;
     }
 
-    private connectedHandler() {
+    private handleConnect = () => {
         console.debug("Connected");
-    }
+    };
 
-    private disconnectedHandler() {
+    private handleDisconnect = () => {
         console.debug("Disconnected");
-    }
+    };
 
-    private initHandler(event: CustomerEventType) {
-        return (data: any) => this.eventHanlder(event, data);
-    }
-
-    private eventHanlder(event: CustomerEventType, data: any) {
+    private handleEvent(event: CustomerEventType, data: any) {
         switch (event) {
             case 'customer.orders.updated':
-                this.updateOrdersHandler(data);
+                this.handleUpdateOrders(data);
                 break;
             case 'customer.orders.executionTimeChanged':
-                this.updateExecutionTimeHandler(data);
+                this.handleUpdateExecutionTime(data);
                 break;
             default:
+                console.warn(`Unhandled event: ${event}`);
                 break;
         }
     }
 
-    private updateExecutionTimeHandler(data: number) {
+    private handleUpdateExecutionTime(data: number) {
         console.debug("Execution time updated", data);
         this.data.executionTime = data;
     }
 
-    private updateOrdersHandler(data: OrdersStatus) {
+    private handleUpdateOrders(data: OrdersStatus) {
         console.debug("Orders updated", data);
         this.data.ordersStatus = data;
     }
