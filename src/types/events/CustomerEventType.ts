@@ -1,5 +1,5 @@
 // TODO: Add more events as needed
-const customerEvents = [
+export const customerEvents = [
     "customer.order.created",
     "customer.order.updated",
     "customer.orders.updated",

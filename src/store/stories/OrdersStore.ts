@@ -1,54 +1,19 @@
-import OrdersStatus from "@type/orders/OrdersStatus";
-import { makeObservable, observable, action, runInAction } from "mobx"
-import { Socket } from "socket.io-client"
+import { makeObservable, observable, action, runInAction, computed } from "mobx"
+import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
 
-// TODO: separate socket.io-client from the store
 class OrdersStore {
-    private socket: Socket;
+    private apiProvider: SocketApiProvider;
 
-    public data?: OrdersStatus | null = null;
-
-    public isConnected: boolean = false;
-
-    constructor(socket: Socket) {
+    constructor(apiProvider: SocketApiProvider) {
         makeObservable(this, {
-            data: observable,
-            isConnected: observable,
-            connectedHandler: action,
-            disconnectedHandler: action,
-            updateOrdersHandler: action,
+            ordersStatus: computed,
         });
 
-        this.socket = socket;
-
-        this.initSocket();
+        this.apiProvider = apiProvider;
     }
 
-    initSocket() {
-        this.socket.on('connect', () => this.connectedHandler());
-        this.socket.on('disconnect', () => this.disconnectedHandler());
-
-        this.socket.on("customer.orders.updated", (orders: OrdersStatus) => this.updateOrdersHandler(orders));
-    }
-    connectedHandler() {
-        console.log("Connected");
-
-        runInAction(() => {
-            this.isConnected = true;
-        });
-    }
-
-    disconnectedHandler() {
-        console.log("Disconnected");
-        runInAction(() => {
-            this.isConnected = false;
-        });
-    }
-
-    updateOrdersHandler(orders: OrdersStatus) {
-        runInAction(() => {
-            this.data = orders;
-        });
+    public get ordersStatus() {
+        return this.apiProvider.data.ordersStatus;
     }
 }
 
