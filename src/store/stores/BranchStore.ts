@@ -24,6 +24,10 @@ class BranchStore {
     public get info(): Branch | null {
         return this.branchStore.data;
     }
+
+    public get loading(): boolean {
+        return this.branchStore.loading || !this.branchStore.data;
+    }
 }
 
 export default BranchStore;

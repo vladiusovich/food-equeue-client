@@ -9,7 +9,7 @@ const BranchInfo: React.FC = () => {
 
 	const info = store.branch.info;
 
-	if (store.branch.branchStore.loading) {
+	if (store.branch.loading) {
 		return (
 			<UI.Stack direction="column" gap={0.5} alignItems="center">
 				<UI.Skeleton width="50%" />
