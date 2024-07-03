@@ -5,8 +5,8 @@ import UserStore from "./stores/UserStore";
 import apiProvider from "../services/dataProvider";
 import ExecutionTimeStore from "./stores/ExecutionTimeStore";
 
-const user = new UserStore();
-const branch = new BranchStore();
+const user = new UserStore(apiProvider);
+const branch = new BranchStore(user);
 const executionTime = new ExecutionTimeStore(apiProvider);
 const orders = new OrdersStore(apiProvider, executionTime);
 
