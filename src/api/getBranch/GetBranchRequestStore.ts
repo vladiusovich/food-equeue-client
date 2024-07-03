@@ -5,9 +5,7 @@ type RequestDataType = {
     orderId: string;
 };
 
-type ResponseDataType = Branch;
-
-class GetBranchRequestStore extends RequestStore<RequestDataType, ResponseDataType> {
+class GetBranchRequestStore extends RequestStore<RequestDataType, Branch> {
     constructor() {
         super({
             method: 'get',

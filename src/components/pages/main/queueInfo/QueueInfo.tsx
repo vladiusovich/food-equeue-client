@@ -8,11 +8,11 @@ import { observer } from "mobx-react-lite";
 const QueueInfo: React.FC = () => {
 	const store = useAppStore();
 
-	// if (!store.orders.isConnected || store.orders.ordersStatus === null) {
-	// 	return (
-	// 		<QueueInfoSkeleton />
-	// 	);
-	// }
+	if (!store.orders.ordersStatus) {
+		return (
+			<QueueInfoSkeleton />
+		);
+	}
 
 	const ordersStatus = store.orders.ordersStatus;
 

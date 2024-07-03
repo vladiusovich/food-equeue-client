@@ -1,9 +1,12 @@
-import { makeObservable, observable, action, runInAction, computed } from "mobx"
+import { makeObservable, computed } from "mobx"
 import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
 import ExecutionTimeStore from "./ExecutionTimeStore";
+import GetOrderStatusRequestStore from "@api/getOrderStatus/GetOrderStatusRequestStore";
 
 class OrdersStore {
     private apiProvider: SocketApiProvider;
+
+    private getOrderStatusRequestStore: GetOrderStatusRequestStore = new GetOrderStatusRequestStore();
 
     public executionTime: ExecutionTimeStore;
 
@@ -14,10 +17,12 @@ class OrdersStore {
 
         this.apiProvider = apiProvider;
         this.executionTime = executionTime;
+
+        this.getOrderStatusRequestStore.execute();
     }
 
     public get ordersStatus() {
-        return this.apiProvider.data.ordersStatus;
+        return this.apiProvider.data.ordersStatus ?? this.getOrderStatusRequestStore?.data;
     }
 }
 
