@@ -1,7 +1,10 @@
 import { createHashRouter } from 'react-router-dom';
 import MainPage from '../components/pages/main/MainPage';
-import OrderBoardPage from '../components/pages/OrderBoard/OrderBoardPage';
 import App from '../components/App';
+import OrderBoardPage from '../components/pages/orderBoard/OrderBoardPage';
+import OrderCheckWaiting from '../components/pages/orderCheckWaiting/OrderCheckWaiting';
+import appRoutes from './routes';
+
 
 const router = createHashRouter([
     {
@@ -9,16 +12,20 @@ const router = createHashRouter([
         element: <App />,
         children: [
             {
-                path: "/",
+                path: appRoutes.root,
                 element: <MainPage />,
             },
             {
-                path: "home",
+                path: appRoutes.home,
                 element: <MainPage />,
             },
             {
-                path: "order-board",
+                path: appRoutes.ordersBoard,
                 element: <OrderBoardPage />,
+            },
+            {
+                path: appRoutes.customerProcess,
+                element: <OrderCheckWaiting />,
             },
         ],
     },

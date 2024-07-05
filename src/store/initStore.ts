@@ -4,8 +4,10 @@ import OrdersStore from "./stores/OrdersStore";
 import UserStore from "./stores/UserStore";
 import apiProvider from "../services/dataProvider";
 import ExecutionTimeStore from "./stores/ExecutionTimeStore";
+import Auth from "./stores/Auth";
 
-const user = new UserStore(apiProvider);
+const auth = new Auth();
+const user = new UserStore(apiProvider, auth);
 const branch = new BranchStore(user);
 const executionTime = new ExecutionTimeStore(apiProvider);
 const orders = new OrdersStore(apiProvider, executionTime);

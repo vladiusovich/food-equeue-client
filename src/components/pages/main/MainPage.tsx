@@ -6,19 +6,19 @@ import ClientInfo from "./clientInfo/ClientInfo";
 import ExecutionTimeInfo from "./executionTimeInfo/ExecutionTimeInfo";
 
 const MainPage: React.FC = () => {
-      return (
-            <UI.Stack direction="column" gap={4}>
-                  <BranchInfo />
-                  <UI.Divider variant="middle" />
+    return (
+        <UI.Stack direction="column" gap={4}>
+            <BranchInfo />
+            <UI.Divider variant="middle" />
 
-                  <QueueInfo />
+            <QueueInfo />
 
-                  <ClientInfo />
-                  <UI.Divider variant="middle" />
+            <ClientInfo />
+            <UI.Divider variant="middle" />
 
-                  <ExecutionTimeInfo />
-            </UI.Stack>
-      );
+            <ExecutionTimeInfo />
+        </UI.Stack>
+    );
 }
 
 export default MainPage;
