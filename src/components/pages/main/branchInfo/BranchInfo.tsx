@@ -2,12 +2,16 @@ import useAppStore from "@hook/useAppStore";
 import typography from "@typography";
 import UI from "@ui";
 import { observer } from "mobx-react-lite";
-import React from "react";
+import React, { useEffect } from "react";
 
 const BranchInfo: React.FC = () => {
 	const store = useAppStore();
 
 	const info = store.branch.info;
+
+	useEffect(() => {
+		store.branch.fetch();
+	}, [store]);
 
 	if (store.branch.loading) {
 		return (

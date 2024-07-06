@@ -6,7 +6,7 @@ import Branch from "@type/branches/Branch";
 class BranchStore {
     private userStore: UserStore;
 
-    public branchStore: GetBranchRequestStore = new GetBranchRequestStore();
+    public getBranchRequest: GetBranchRequestStore = new GetBranchRequestStore();
 
     constructor(userStore: UserStore) {
         this.userStore = userStore;
@@ -14,19 +14,21 @@ class BranchStore {
         makeObservable(this, {
             info: computed,
         });
+    }
 
-        // TODO: is it good idea?
-        this.branchStore.execute({
-            orderId: this.userStore.orderId,
+    async fetch(): Promise<void> {
+        await this.userStore.fetch();
+        await this.getBranchRequest.execute({
+            id: this.userStore?.branchId ?? '',
         });
     }
 
     public get info(): Branch | null {
-        return this.branchStore.data;
+        return this.getBranchRequest.data;
     }
 
     public get loading(): boolean {
-        return this.branchStore.loading || !this.branchStore.data;
+        return this.getBranchRequest.loading || !this.getBranchRequest.data;
     }
 }
 

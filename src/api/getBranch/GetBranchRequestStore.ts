@@ -2,7 +2,7 @@ import RequestStore from "@api/core/RequestStore";
 import Branch from "@type/branches/Branch";
 
 type RequestDataType = {
-    orderId: string;
+    id: string | number;
 };
 
 class GetBranchRequestStore extends RequestStore<RequestDataType, Branch> {
