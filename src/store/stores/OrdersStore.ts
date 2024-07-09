@@ -1,7 +1,7 @@
 import { makeObservable, computed } from "mobx"
 import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
 import ExecutionTimeStore from "./ExecutionTimeStore";
-import GetOrderStatusRequestStore from "@api/getOrderStatus/GetOrderStatusRequestStore";
+import GetOrderStatusRequestStore from "@api/requests/getOrderStatus/GetOrderStatusRequestStore";
 
 class OrdersStore {
     private apiProvider: SocketApiProvider;

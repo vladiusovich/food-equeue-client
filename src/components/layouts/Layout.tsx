@@ -28,6 +28,7 @@ const Layout: React.FC = () => {
     return (
         <S.container>
             <Outlet />
+            {/* TODO: reimplement this case */}
             <Menu />
         </S.container>
     );

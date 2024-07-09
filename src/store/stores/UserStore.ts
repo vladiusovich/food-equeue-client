@@ -1,7 +1,7 @@
 import { makeObservable, observable, action, computed } from "mobx"
 import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
 import AuthStore from "./Auth";
-import GetCustomerOrderRequestStore from "@api/getCustomerOrder/GetCustomerOrderRequestStore";
+import GetCustomerOrderRequestStore from "@api/requests/getCustomerOrder/GetCustomerOrderRequestStore";
 
 // TODO: Implement UserStore when api is ready
 class UserStore {

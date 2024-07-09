@@ -12,8 +12,8 @@ class ExecutionTimeStore {
         this.apiProvider = apiProvider;
     }
 
-    public get time() {
-        return this.apiProvider.data.executionTime;
+    public get time(): number | null {
+        return this.apiProvider?.data?.executionTime ?? null;
     }
 }
 

@@ -1,4 +1,4 @@
-import PostCustomerIdenitify from "@api/postCustomerIdenitify/PostCustomerIdenitify";
+import PostCustomerIdenitify from "@api/requests/postCustomerIdenitify/PostCustomerIdenitify";
 import { makeObservable, observable, action, computed, runInAction } from "mobx"
 
 const TOKEN = 'token';

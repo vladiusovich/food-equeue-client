@@ -1,4 +1,4 @@
-import GetBranchRequestStore from "@api/getBranch/GetBranchRequestStore";
+import GetBranchRequestStore from "@api/requests/getBranch/GetBranchRequestStore";
 import { makeObservable, computed } from "mobx"
 import UserStore from "./UserStore";
 import Branch from "@type/branches/Branch";
