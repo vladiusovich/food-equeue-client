@@ -11,6 +11,8 @@ import IconButton from "./iconButton/IconButton";
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
 export * from "@mui/material/Stack";
 export * from "@mui/material/Unstable_Grid2/Grid2";
@@ -24,6 +26,9 @@ export * from "./iconButton/IconButton";
 export * from '@mui/material/Divider';
 export * from '@mui/material/Paper';
 
+export * from "@mui/material/BottomNavigation";
+export * from "@mui/material/BottomNavigationAction";
+
 const UI = {
     Stack,
     Grid,
@@ -35,6 +40,9 @@ const UI = {
     IconButton,
     Divider,
     Paper,
+
+    BottomNavigation,
+    BottomNavigationAction,
 };
 
 export default UI;

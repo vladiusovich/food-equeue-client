@@ -4,6 +4,7 @@ import { Navigate, Outlet, useSearchParams } from "react-router-dom";
 import appRoutes from "../../router/routes";
 import useAppStore from "@hook/useAppStore";
 import { observer } from "mobx-react-lite";
+import Menu from "@common/menu/Menu";
 
 const Layout: React.FC = () => {
     const [searchParams] = useSearchParams();
@@ -27,6 +28,7 @@ const Layout: React.FC = () => {
     return (
         <S.container>
             <Outlet />
+            <Menu />
         </S.container>
     );
 };

@@ -12,6 +12,7 @@ const MainPage: React.FC = () => {
             <UI.Divider variant="middle" />
 
             <QueueInfo />
+            <UI.Divider variant="middle" />
 
             <ClientInfo />
             <UI.Divider variant="middle" />

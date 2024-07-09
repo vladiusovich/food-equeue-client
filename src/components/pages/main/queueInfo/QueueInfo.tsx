@@ -30,10 +30,6 @@ const QueueInfo: React.FC = () => {
 					<QueueItem title="Ready:" value={ready} />
 				</UI.Stack>
 			</UI.Stack>
-
-			<UI.Button variant="outlined" color="primary">
-				Online board
-			</UI.Button>
 		</UI.Stack>
 	);
 }
