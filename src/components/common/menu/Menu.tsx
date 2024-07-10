@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import useAppStore from "@hook/useAppStore";
 import UI from "@ui";
 import appRoutes from "../../../router/routes";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -27,9 +26,13 @@ const navigationItems: NavigationItem[] = [
 ];
 
 const Menu: React.FC = () => {
-	const store = useAppStore();
-	const [selectedValue, setSelectedValue] = useState<string>(appRoutes.home);
+	const location = useLocation();
 	const navigate = useNavigate();
+	const [selectedValue, setSelectedValue] = useState<string>(location.pathname);
+
+	useEffect(() => {
+		setSelectedValue(location.pathname);
+	}, [location.pathname]);
 
 	const handleNavigate = (_event: React.ChangeEvent<{}>, value: string) => {
 		setSelectedValue(value);

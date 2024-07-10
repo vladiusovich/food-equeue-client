@@ -7,7 +7,7 @@ import OrdersProgressStatus from "@type/orders/OrdersProgressStatus";
 
 const isCurrentUserOrder = (orderId: string | number, userOrderId: string | number) => (orderId === userOrderId);
 
-// TODO: bug fix
+// TODO: bug fix: userId does not appear in the first place
 const reorderReadyOrders = (orders: string[], userOrderId: string) => {
     const userOrderIndex = orders.findIndex((order) => isCurrentUserOrder(order, userOrderId));
 
