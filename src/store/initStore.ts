@@ -10,7 +10,7 @@ const auth = new Auth();
 const user = new UserStore(apiProvider, auth);
 const branch = new BranchStore(user);
 const executionTime = new ExecutionTimeStore(apiProvider);
-const orders = new OrdersStore(apiProvider, executionTime);
+const orders = new OrdersStore(apiProvider, executionTime, user);
 
 const appStore: AppStoreType = {
     user,

@@ -8,13 +8,13 @@ import { observer } from "mobx-react-lite";
 const QueueInfo: React.FC = () => {
 	const store = useAppStore();
 
-	if (!store.orders.ordersStatus) {
+	if (!store.orders.ordersProgress) {
 		return (
 			<QueueInfoSkeleton />
 		);
 	}
 
-	const ordersStatus = store.orders.ordersStatus;
+	const ordersStatus = store.orders.ordersProgress;
 
 	const inProgress = ordersStatus?.inProgress?.length ?? 0;
 	const ready = ordersStatus?.ready?.length ?? 0;

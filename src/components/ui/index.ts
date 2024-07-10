@@ -14,6 +14,8 @@ import Paper from '@mui/material/Paper';
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
+import Chip from "@mui/material/Chip";
+
 export * from "@mui/material/Stack";
 export * from "@mui/material/Unstable_Grid2/Grid2";
 
@@ -29,6 +31,8 @@ export * from '@mui/material/Paper';
 export * from "@mui/material/BottomNavigation";
 export * from "@mui/material/BottomNavigationAction";
 
+export * from "@mui/material/Chip";
+
 const UI = {
     Stack,
     Grid,
@@ -43,6 +47,8 @@ const UI = {
 
     BottomNavigation,
     BottomNavigationAction,
+
+    Chip,
 };
 
 export default UI;
