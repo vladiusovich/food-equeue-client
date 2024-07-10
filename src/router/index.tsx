@@ -4,6 +4,7 @@ import App from '../components/App';
 import OrdersBoardPage from '../components/pages/orderBoard/OrdersBoardPage';
 import OrderCheckWaiting from '../components/pages/orderCheckWaiting/OrderCheckWaiting';
 import appRoutes from './routes';
+import NotFoundPage from '@common/notFoundPage/NotFoundPage';
 
 
 const router = createHashRouter([
@@ -28,6 +29,10 @@ const router = createHashRouter([
                 element: <OrderCheckWaiting />,
             },
         ],
+    },
+    {
+        path: "*",
+        element: <NotFoundPage />,
     },
 ]);
 
