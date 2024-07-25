@@ -1,14 +1,13 @@
 import PostCustomerIdenitify from "@api/requests/postCustomerIdenitify/PostCustomerIdenitify";
 import { makeObservable, observable, action, computed, runInAction } from "mobx"
-
-const TOKEN = 'token';
+import { ACCESS_TOKEN } from "../../const/authConstans";
 
 // TODO: Implement AuthStore when api is ready
 class AuthStore {
 
     public isLoggedIn: boolean = false;
 
-    public token?: string | null = localStorage.getItem(TOKEN);
+    public accessToken?: string | null = localStorage.getItem(ACCESS_TOKEN);
     public hash?: string | null = localStorage.getItem('hash');
 
     private postCustomerIdenitify: PostCustomerIdenitify = new PostCustomerIdenitify();
@@ -16,7 +15,7 @@ class AuthStore {
     constructor() {
         makeObservable(this, {
             isLoggedIn: observable,
-            token: observable,
+            accessToken: observable,
             hash: observable,
             login: action,
         });
@@ -28,15 +27,10 @@ class AuthStore {
 
         const info = this.postCustomerIdenitify.data;
 
-        console.log('login', {
-            hash,
-            info,
-        });
-
         if (info) {
-            this.token = info.token;
+            this.accessToken = info.access_token;
 
-            localStorage.setItem(TOKEN, this.token);
+            localStorage.setItem(ACCESS_TOKEN, this.accessToken);
 
             // TODO: reimplement it
             localStorage.setItem('hash', hash);

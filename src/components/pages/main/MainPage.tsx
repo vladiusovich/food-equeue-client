@@ -7,7 +7,7 @@ import ExecutionTimeInfo from "./executionTimeInfo/ExecutionTimeInfo";
 
 const MainPage: React.FC = () => {
     return (
-        <UI.Stack direction="column" gap={4}>
+        <UI.Stack direction="column" gap={3}>
             <BranchInfo />
             <UI.Divider variant="middle" />
 

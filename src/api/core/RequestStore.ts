@@ -7,7 +7,6 @@ type RequestOptionsType = {
     useParams?: boolean;
 };
 
-// TODO: Implement errors handling
 class RequestStore<RequestDataType, ResponseDataType> {
     public data: ResponseDataType | null = null;
     public loading = false;
@@ -39,6 +38,7 @@ class RequestStore<RequestDataType, ResponseDataType> {
 
             this.data = response.data as ResponseDataType;
         } catch (error) {
+            // TODO: Implement errors handling
             // this.error = error;
         } finally {
             this.loading = false;

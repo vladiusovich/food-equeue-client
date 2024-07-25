@@ -1,5 +1,5 @@
 interface IdentityCustomerInfo {
-    token: string;
+    access_token: string;
 }
 
 export default IdentityCustomerInfo;
