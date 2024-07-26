@@ -2,46 +2,48 @@ import PostCustomerIdenitify from "@api/requests/postCustomerIdenitify/PostCusto
 import { makeObservable, observable, action, computed, runInAction } from "mobx"
 import { ACCESS_TOKEN } from "../../const/authConstans";
 
-// TODO: Implement AuthStore when api is ready
 class AuthStore {
-
-    public isLoggedIn: boolean = false;
-
     public accessToken?: string | null = localStorage.getItem(ACCESS_TOKEN);
-    public hash?: string | null = localStorage.getItem('hash');
-
-    private postCustomerIdenitify: PostCustomerIdenitify = new PostCustomerIdenitify();
+    private postCustomerIdentify: PostCustomerIdenitify = new PostCustomerIdenitify();
 
     constructor() {
         makeObservable(this, {
-            isLoggedIn: observable,
+            isLoggedIn: computed,
             accessToken: observable,
-            hash: observable,
+            hash: computed,
             login: action,
         });
     }
 
     public async login(hash: string): Promise<void> {
+        try {
+            await this.postCustomerIdentify.execute({ hash });
+            const info = this.postCustomerIdentify.data;
 
-        await this.postCustomerIdenitify.execute({ hash });
+            if (info) {
+                runInAction(() => {
+                    runInAction(() => {
+                        this.accessToken = info.access_token;
+                    });
+                });
 
-        const info = this.postCustomerIdenitify.data;
+                runInAction(() => {
+                    localStorage.setItem(ACCESS_TOKEN, this.accessToken!);
+                    localStorage.setItem('hash', hash);
+                });
 
-        if (info) {
-            this.accessToken = info.access_token;
-
-            localStorage.setItem(ACCESS_TOKEN, this.accessToken);
-
-            // TODO: reimplement it
-            localStorage.setItem('hash', hash);
-
-            runInAction(() => {
-                this.isLoggedIn = true;
-            });
-
-        } else {
-            this.isLoggedIn = false;
+            }
+        } catch (error) {
+            console.error("Login failed:", error);
         }
+    }
+
+    public get isLoggedIn(): boolean {
+        return !!this.accessToken ?? false;
+    }
+
+    public get hash(): string | null {
+        return localStorage.getItem('hash') ?? null;
     }
 }
 

@@ -23,7 +23,7 @@ const useSocket = () => {
         socket.on('connect', onConnect);
         socket.on('disconnect', onDisconnect);
 
-        console.log(isConnected ? 'Connected' : 'Disconnected');
+        console.debug(isConnected ? 'Connected' : 'Disconnected');
 
         return () => {
             socket.off('connect', onConnect);

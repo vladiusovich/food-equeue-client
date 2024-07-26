@@ -1,9 +1,14 @@
-import Layout from "./layouts/Layout";
+import useRoteResolver from "@hook/useRoteResolver";
+import ClientLayout from "./layouts/ClientLayout";
+
+import { observer } from "mobx-react-lite";
 
 const App: React.FC = () => {
+	useRoteResolver();
+
 	return (
-		<Layout />
+		<ClientLayout />
 	);
 }
 
-export default App;
+export default observer(App);

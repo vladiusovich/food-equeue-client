@@ -3,18 +3,28 @@ import typography from "@typography";
 import UI from "@ui";
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import appRoutes from "../../../router/routes";
 
 const OrderCheckWaiting: React.FC = () => {
     const location = useLocation();
+
+    const navigate = useNavigate();
 
     const hash = location.state?.hash;
 
     const appStore = useAppStore();
 
+    console.log('OrderCheckWaiting', hash);
+
     useEffect(() => {
+        if (appStore.user.auth.isLoggedIn) {
+            navigate(appRoutes.home);
+            return;
+        }
+
         appStore.user.auth.login(hash);
-    }, [hash]);
+    }, [hash, appStore.user.auth.isLoggedIn]);
 
     return (
         <UI.Stack direction="column" gap={3} alignItems="center">

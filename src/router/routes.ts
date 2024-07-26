@@ -3,6 +3,8 @@ export interface AppRoutes {
     home: string;
     ordersBoard: string;
     customerProcess: string;
+
+    guest: string;
 };
 
 const appRoutes: AppRoutes = {
@@ -10,6 +12,7 @@ const appRoutes: AppRoutes = {
     home: '/home',
     ordersBoard: '/orders-board',
     customerProcess: '/customer-process',
+    guest: '/guest',
 };
 
 export default appRoutes;
