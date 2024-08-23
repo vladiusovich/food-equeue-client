@@ -1,7 +1,6 @@
 import React from "react";
 import S from "./BaseLayout.styled";
 import { Outlet } from "react-router-dom";
-import Menu from "@common/menu/Menu";
 
 interface BaseLayoutProps {
     children?: React.ReactNode;

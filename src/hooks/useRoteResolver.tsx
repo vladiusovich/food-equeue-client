@@ -15,21 +15,21 @@ const useRoteResolver = () => {
 
     useEffect(() => {
         if (appStore.user.auth.isLoggedIn) {
-            console.log('useRoteResolver. isLoggedIn', appStore.user.auth.isLoggedIn);
+            console.debug('useRoteResolver. isLoggedIn', appStore.user.auth.isLoggedIn);
 
             navigate(appRoutes.home);
             return;
         }
 
         if (hash) {
-            console.log('useRoteResolver. hash: ', appRoutes.customerProcess, hash);
+            console.debug('useRoteResolver. hash: ', appRoutes.customerProcess, hash);
 
             navigate(appRoutes.customerProcess, { state: { hash }, replace: true });
             return;
         }
 
         if (!appStore.user.auth.isLoggedIn && !hash) {
-            console.log('useRoteResolver. loggeout');
+            console.debug('useRoteResolver. loggeout');
             navigate(appRoutes.guest);
         }
 

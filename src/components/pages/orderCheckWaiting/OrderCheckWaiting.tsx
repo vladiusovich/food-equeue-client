@@ -15,8 +15,6 @@ const OrderCheckWaiting: React.FC = () => {
 
     const appStore = useAppStore();
 
-    console.log('OrderCheckWaiting', hash);
-
     useEffect(() => {
         if (appStore.user.auth.isLoggedIn) {
             navigate(appRoutes.home);
