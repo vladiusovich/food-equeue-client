@@ -11,6 +11,7 @@ class GetBranchRequestStore extends RequestStore<RequestDataType, Branch> {
             method: 'get',
             url: '/branches',
             useParams: true,
+            cacheTimeInSeconds: Infinity,
         });
     }
 }
