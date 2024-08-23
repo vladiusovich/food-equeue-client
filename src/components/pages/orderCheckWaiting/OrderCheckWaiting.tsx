@@ -16,12 +16,15 @@ const OrderCheckWaiting: React.FC = () => {
     const appStore = useAppStore();
 
     useEffect(() => {
+        appStore.user.auth.logout();
+        appStore.user.auth.login(hash);
+
         if (appStore.user.auth.isLoggedIn) {
             navigate(appRoutes.home);
-            return;
+        } else {
+            // TODO: handle case when user can't login
+            navigate(appRoutes.guest);
         }
-
-        appStore.user.auth.login(hash);
     }, [hash, appStore.user.auth.isLoggedIn]);
 
     return (

@@ -45,6 +45,15 @@ class AuthStore {
     public get hash(): string | null {
         return localStorage.getItem('hash') ?? null;
     }
+
+    public logout(): void {
+        runInAction(() => {
+            localStorage.removeItem(ACCESS_TOKEN);
+            localStorage.removeItem('hash');
+            this.accessToken = null;
+        });
+
+    }
 }
 
 export default AuthStore;
