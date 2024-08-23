@@ -20,13 +20,13 @@ const reorderReadyOrders = (orders: string[], userOrderId: string) => {
 }
 
 class OrdersStore {
-    private apiProvider: SocketApiProvider;
-
-    private getOrderStatusRequestStore: GetOrderStatusRequestStore = new GetOrderStatusRequestStore();
-
     public executionTime: ExecutionTimeStore;
 
     public userStore: UserStore;
+
+    private apiProvider: SocketApiProvider;
+
+    private getOrderStatusRequestStore: GetOrderStatusRequestStore = new GetOrderStatusRequestStore();
 
     constructor(
         apiProvider: SocketApiProvider,
@@ -40,8 +40,10 @@ class OrdersStore {
         this.apiProvider = apiProvider;
         this.executionTime = executionTime;
         this.userStore = userStore;
+    }
 
-        this.getOrderStatusRequestStore.execute();
+    public async fetch() {
+        await this.getOrderStatusRequestStore.execute();
     }
 
     public get ordersProgress(): OrdersProgressStatus {
