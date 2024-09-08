@@ -3,7 +3,7 @@ import appConfig from "../../config/appConfig";
 import { ACCESS_TOKEN } from "../../const/authConstans";
 
 const instance = axios.create({
-    baseURL: appConfig.apiBaseUrl,
+    baseURL: appConfig.api.apiUrl,
     timeout: 3000,
     // headers: {'X-Custom-Header': 'foobar'}
 });
