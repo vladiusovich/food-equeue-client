@@ -1,9 +1,8 @@
-// TODO: implement a better way to manage configurations
-const appConfig = {
-    // apiBaseUrl: 'http://localhost:3002/',
-    apiBaseUrl: 'http://192.168.100.11:3002',
-    // socketUrl: 'http://localhost:3002',
-    socketUrl: 'http://192.168.100.11:3002',
+const appConfig: ConfigType = {
+    api: {
+        apiUrl: process.env.REACT_APP_API_URL ?? '',
+        socketUrl: process.env.REACT_APP_SOCKET_URL ?? '',
+    }
 };
 
 export default appConfig;
