@@ -1,7 +1,7 @@
 import UI from "@ui";
 import React from "react";
 import ClientInfo from "../main/clientInfo/ClientInfo";
-import OrdersTable from "./ordersTable/OrdersTable";
+import OrdersTable from "./orderTable/OrdersTable";
 
 const OrdersBoardPage: React.FC = () => {
     return (
