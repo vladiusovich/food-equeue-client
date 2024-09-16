@@ -5,4 +5,6 @@ const appConfig: ConfigType = {
     }
 };
 
+console.debug("Init configuration:", appConfig);
+
 export default appConfig;

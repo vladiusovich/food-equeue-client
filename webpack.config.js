@@ -1,16 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const { DefinePlugin } = require("webpack");
 
 const basePath = "./src";
 
-module.exports = (env, process, ...rest) => {
-    const isProduction = process.mode === 'production';
-    const dotenvFilename = isProduction ? '.env.production' : '.env.dev';
-
-    console.debug('init webpack. env:', {
-        isProduction,
-        dotenvFilename,
+module.exports = (env, process) => {
+    console.debug('Init webpack:', {
         process,
         env,
     });
@@ -72,10 +67,12 @@ module.exports = (env, process, ...rest) => {
             new HtmlWebpackPlugin({
                 template: './public/index.html'
             }),
-            new Dotenv({
-                path: dotenvFilename,
+            // TODO
+            new DefinePlugin({
+                'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL),
+                'process.env.REACT_APP_SOCKET_URL': JSON.stringify(process.env.REACT_APP_SOCKET_URL),
             }),
-
+            // new Dotenv(),
         ],
         devServer: {
             static: {
