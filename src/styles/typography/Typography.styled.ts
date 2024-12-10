@@ -67,17 +67,6 @@ const fonts = {
     bold: css`
         font-weight: 600;
     `,
-    gray: css`
-        color: ${({ theme }) => theme.colors.typo.medium};
-    `,
-    grayBold: css`
-    `,
-    higher: css`
-      color: ${({ theme }) => theme.colors.typo.light.higher};
-      path {
-          fill: ${({ theme }) => theme.colors.typo.light.higher};
-      }
-  `,
 };
 
 export default fonts;

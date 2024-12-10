@@ -42,17 +42,6 @@ const typography = {
         ${fonts.small};
         ${fonts.bold};
     `,
-    // gray: styled.div`
-    //     ${fonts.small};
-    //     ${fonts.gray};
-    // `,
-    // grayXsmall: styled.div`
-    //     ${fonts.xsmall};
-    //     ${fonts.gray};
-    // `,
-    // grayBold: styled.div`
-    //     ${fonts.grayBold};
-    // `,
 };
 
 export default typography;

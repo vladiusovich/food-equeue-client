@@ -10,8 +10,7 @@ import Chips from "./Chips";
 const UiKit: React.FC = () => {
     return (
         <div style={{
-            margin: "10px auto",
-            padding: "10px",
+            margin: "10px 15px",
         }}>
             <UI.Stack direction="column" gap={3}>
                 <Typography />
