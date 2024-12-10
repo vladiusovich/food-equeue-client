@@ -2,32 +2,26 @@ import { css } from "styled-components";
 
 const fonts = {
     h1: css`
-        font-weight: 600;
         font-size: 56px;
         line-height: 68px;
     `,
     h2: css`
-        font-weight: 600;
         font-size: 50px;
         line-height: 140%;
     `,
     h3: css`
-        font-weight: 600;
         font-size: 40px;
         line-height: 140%;
     `,
     h4: css`
         font-size: 22px;
-        font-weight: 600;
         line-height: 140%;
     `,
     h5: css`
-        font-weight: 600;
         font-size: 20px;
         line-height: 140%;
     `,
     h6: css` // bt_txt
-        font-weight: 400;
         font-size: 18px;
         line-height: normal;
     `,

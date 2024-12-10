@@ -7,13 +7,12 @@ const Typography: React.FC = () => {
 
     return (
         <UI.Paper>
-            <UI.Stack direction="column" gap={1}>
-                {
-                    typos.map((typo) => {
-                        const Typo = typography[typo as keyof typeof typography];
-                        return <Typo key={typo}>{typo}</Typo>;
-                    })
-                }
+            <UI.Stack direction="column" gap={2}>
+                {typos.map((typo) => (
+                    <UI.Typography key={typo} variant={typo}>
+                        {typo}
+                    </UI.Typography>
+                ))}
             </UI.Stack>
         </UI.Paper>
     );
