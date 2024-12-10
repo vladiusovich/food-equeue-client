@@ -5,6 +5,7 @@ export interface AppRoutes {
     customerProcess: string;
 
     guest: string;
+    uikit: string;
 };
 
 const appRoutes: AppRoutes = {
@@ -13,6 +14,7 @@ const appRoutes: AppRoutes = {
     ordersBoard: '/orders-board',
     customerProcess: '/customer-process',
     guest: '/guest',
+    uikit: '/uikit',
 };
 
 export default appRoutes;

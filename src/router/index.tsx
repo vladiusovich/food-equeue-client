@@ -8,6 +8,7 @@ import NotFoundPage from '@common/notFoundPage/NotFoundPage';
 import GuestPage from '../components/pages/guest/GuestPage';
 import GuestLayout from '../components/layouts/GuestLayout';
 import VerifyOrderLayout from '../components/layouts/VerifyOrderLayout';
+import UiKit from '../components/pages/uikit/UiKit';
 
 
 const router = createHashRouter([
@@ -48,6 +49,10 @@ const router = createHashRouter([
                 element: <GuestPage />,
             }
         ],
+    },
+    {
+        path: appRoutes.uikit,
+        element: <UiKit />,
     },
     {
         path: "*",
