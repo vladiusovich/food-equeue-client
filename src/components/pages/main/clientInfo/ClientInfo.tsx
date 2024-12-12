@@ -1,4 +1,3 @@
-import typography from "@typography";
 import UI from "@ui";
 import React, { useEffect } from "react";
 import S from "./ClientInfo.styled";
@@ -16,7 +15,7 @@ const ClientInfo: React.FC = () => {
 
 	return (
 		<UI.Stack direction="column" gap={1} alignItems="center">
-			<typography.h4>Your number</typography.h4>
+			<UI.Typography variant="h4">Your number</UI.Typography>
 			{orderId
 				? (<S.clientInfo>{orderId}</S.clientInfo>)
 				: (<UI.Skeleton width="25%" />)

@@ -1,4 +1,3 @@
-import typography from "@typography";
 import UI from "@ui";
 import React from "react";
 
@@ -13,7 +12,7 @@ const OrdersColumn: React.FC<Props> = ({
 }) => {
     return (
         <UI.Stack direction="column" gap={1} >
-            <typography.h4> {title} </typography.h4>
+            <UI.Typography variant="h4"> {title} </UI.Typography>
 
             <UI.Stack direction="column" gap={1} alignItems="stretch">
                 {children}

@@ -1,4 +1,3 @@
-import typography from "@typography";
 import UI from "@ui";
 import React from "react";
 
@@ -10,8 +9,8 @@ interface Props {
 const QueueItem: React.FC<Props> = ({ title, value }) => {
 	return (
 		<UI.Stack direction="row" gap={1} alignItems="flex-end">
-			<typography.bold>{title}</typography.bold>
-			<typography.xsmall> {value} </typography.xsmall>
+			<UI.Typography variant="bold">{title}</UI.Typography>
+			<UI.Typography variant="xsmall">{value}</UI.Typography>
 		</UI.Stack>
 	);
 }

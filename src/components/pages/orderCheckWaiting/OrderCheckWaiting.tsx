@@ -1,5 +1,4 @@
 import useAppStore from "@hook/useAppStore";
-import typography from "@typography";
 import UI from "@ui";
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
@@ -29,7 +28,7 @@ const OrderCheckWaiting: React.FC = () => {
 
     return (
         <UI.Stack direction="column" gap={3} alignItems="center">
-            <typography.small>Loking for your order</typography.small>
+            <UI.Typography variant="small">Loking for your order</UI.Typography>
             <UI.Stack direction="row" gap={1} alignItems="center" >
                 <UI.CircularProgress size="6rem" thickness={2.5} />
                 <UI.Stack direction="column" gap={0.5}>

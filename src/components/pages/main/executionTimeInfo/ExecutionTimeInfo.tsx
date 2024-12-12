@@ -1,5 +1,4 @@
 import useAppStore from "@hook/useAppStore";
-import typography from "@typography";
 import UI from "@ui";
 import { observer } from "mobx-react-lite";
 import React from "react";
@@ -16,7 +15,7 @@ const ExecutionTimeInfo: React.FC = () => {
 
 	return (
 		<UI.Stack direction="column" gap={3} alignItems="center">
-			<typography.small>Average waiting time</typography.small>
+			<UI.Typography variant="small">Average waiting time</UI.Typography>
 
 			<UI.Stack direction="row" gap={3} alignItems="center" >
 				<S.waitngIcon fontSize="small" />
@@ -26,12 +25,12 @@ const ExecutionTimeInfo: React.FC = () => {
 						{
 							time === null
 								? (
-									<typography.h5>Waiting...</typography.h5>
+									<UI.Typography variant="h5">Waiting...</UI.Typography>
 								)
 								: (
 									<>
-										<typography.h2>{time}</typography.h2>
-										<typography.h5>min</typography.h5>
+										<UI.Typography variant="h2">{time}</UI.Typography>
+										<UI.Typography variant="h5">min</UI.Typography>
 									</>
 								)
 						}

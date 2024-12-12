@@ -1,5 +1,4 @@
 import useAppStore from "@hook/useAppStore";
-import typography from "@typography";
 import UI from "@ui";
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
@@ -24,8 +23,8 @@ const BranchInfo: React.FC = () => {
 
 	return (
 		<UI.Stack direction="column" gap={0.5} alignItems="center">
-			<typography.bold> {info?.name} </typography.bold>
-			<typography.xsmall>{info?.address}</typography.xsmall>
+			<UI.Typography variant="bold"> {info?.name} </UI.Typography>
+			<UI.Typography variant="xsmall">{info?.address}</UI.Typography>
 		</UI.Stack>
 	);
 }
