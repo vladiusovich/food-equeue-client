@@ -4,6 +4,7 @@ import QueueItem from "./QueueItem/QueueItem";
 import QueueInfoSkeleton from "./QueueInfoSkeleton";
 import useAppStore from "@hook/useAppStore";
 import { observer } from "mobx-react-lite";
+import ExecutionTimeInfo from "../executionTimeInfo/ExecutionTimeInfo";
 
 const QueueInfo: React.FC = () => {
 	const store = useAppStore();
@@ -24,17 +25,30 @@ const QueueInfo: React.FC = () => {
 	const ready = ordersStatus?.ready?.length ?? 0;
 
 	return (
-		<UI.Stack direction="column" gap={2}>
-			<UI.Stack direction="row" gap={1} justifyContent="space-around">
-				<UI.Stack direction="column" gap={1}>
+		<UI.Grid container spacing={1}>
+			<UI.Grid xs={12}>
+				<ExecutionTimeInfo />
+			</UI.Grid>
+
+			<UI.Grid xs={6}>
+				<UI.Paper>
 					<QueueItem title="Count:" value={inProgress + ready} />
+				</UI.Paper>
+			</UI.Grid>
+
+			<UI.Grid xs={6}>
+				<UI.Paper>
 					<QueueItem title="In progress:" value={inProgress} />
-				</UI.Stack>
-				<UI.Stack direction="column" gap={1}>
+				</UI.Paper>
+			</UI.Grid>
+
+
+			<UI.Grid xs={12}>
+				<UI.Paper>
 					<QueueItem title="Ready:" value={ready} />
-				</UI.Stack>
-			</UI.Stack>
-		</UI.Stack>
+				</UI.Paper>
+			</UI.Grid>
+		</UI.Grid>
 	);
 }
 

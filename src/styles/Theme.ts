@@ -39,10 +39,10 @@ const theme: ThemeType = {
         },
         background: {
             regular: {
-                peak: "#FFFFFF",
+                peak: "rgb(251, 251, 251)",
                 highest: "#F5F5F5",
                 higher: "#E5E5E5",
-                high: "#D5D5D5",
+                high: "rgb(248, 248, 248)",
                 medium: "#C5C5C5",
                 low: "#B5B5B5",
             },
@@ -76,7 +76,7 @@ const theme: ThemeType = {
                 peak: "#CCCCCC",
                 highest: "#BFBFBF",
                 higher: "#B2B2B2",
-                high: "#A6A6A6",
+                high: "#D5D5D5",
                 medium: "#999999",
                 low: "#8C8C8C",
             },
@@ -107,7 +107,7 @@ const theme: ThemeType = {
         },
     },
     borderRadius: {
-        regular: "8px",
+        regular: "12px",
     },
 };
 

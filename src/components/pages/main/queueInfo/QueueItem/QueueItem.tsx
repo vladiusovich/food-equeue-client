@@ -8,9 +8,9 @@ interface Props {
 
 const QueueItem: React.FC<Props> = ({ title, value }) => {
 	return (
-		<UI.Stack direction="row" gap={1} alignItems="flex-end">
-			<UI.Typography variant="bold">{title}</UI.Typography>
-			<UI.Typography variant="xsmall">{value}</UI.Typography>
+		<UI.Stack direction="column" gap={1} >
+			<UI.Typography variant="xxsmall">{title}</UI.Typography>
+			<UI.Typography variant="bold">{value}</UI.Typography>
 		</UI.Stack>
 	);
 }

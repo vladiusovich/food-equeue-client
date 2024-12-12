@@ -2,7 +2,7 @@ import { createHashRouter } from 'react-router-dom';
 import MainPage from '../components/pages/main/MainPage';
 import App from '../components/App';
 import OrdersBoardPage from '../components/pages/orderBoard/OrdersBoardPage';
-import OrderCheckWaiting from '../components/pages/orderCheckWaiting/OrderCheckWaiting';
+import OrderCheckWaitingPage from '../components/pages/orderCheckWaiting/OrderCheckWaitingPage';
 import appRoutes from './routes';
 import NotFoundPage from '@common/notFoundPage/NotFoundPage';
 import GuestPage from '../components/pages/guest/GuestPage';
@@ -14,7 +14,7 @@ import UiKit from '../components/pages/uikit/UiKit';
 const router = createHashRouter([
     {
         path: "/",
-        element: <App />,
+        element: <App />, // ClientLayout
         children: [
             {
                 path: appRoutes.root,
@@ -36,7 +36,7 @@ const router = createHashRouter([
         children: [
             {
                 path: appRoutes.customerProcess,
-                element: <OrderCheckWaiting />,
+                element: <OrderCheckWaitingPage />,
             },
         ],
     },

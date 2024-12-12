@@ -14,18 +14,17 @@ const BranchInfo: React.FC = () => {
 
 	if (store.branch.loading) {
 		return (
-			<UI.Stack direction="column" gap={0.5} alignItems="center">
-				<UI.Skeleton width="50%" />
-				<UI.Skeleton width="80%" />
-			</UI.Stack>
+			<UI.Skeleton variant="rectangular" width="100%" height="70px" />
 		);
 	};
 
 	return (
-		<UI.Stack direction="column" gap={0.5} alignItems="center">
-			<UI.Typography variant="bold"> {info?.name} </UI.Typography>
-			<UI.Typography variant="xsmall">{info?.address}</UI.Typography>
-		</UI.Stack>
+		<UI.Paper>
+			<UI.Stack direction="column" gap={0.5} alignItems="center">
+				<UI.Typography variant="bold"> {info?.name} </UI.Typography>
+				<UI.Typography variant="xsmall">{info?.address}</UI.Typography>
+			</UI.Stack>
+		</UI.Paper>
 	);
 }
 

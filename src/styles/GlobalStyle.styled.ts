@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import theme from "@styles/Theme";
 
 const GlobalStyles = createGlobalStyle`
     body {
@@ -8,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
         font-size: 16px;
         line-height: 160%;
 
-        background-color: ${({ theme }) => theme.colors.background.highest};
+        background-color: ${() => theme.colors.background.regular.peak};
     }
 
     input:-webkit-autofill,

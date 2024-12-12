@@ -1,16 +1,21 @@
 import React from "react";
 import S from "./BaseLayout.styled";
 import { Outlet } from "react-router-dom";
+import Menu from "@common/menu/Menu";
 
 interface BaseLayoutProps {
-    children?: React.ReactNode;
+    isLogged?: boolean;
 }
 
-const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
+const BaseLayout: React.FC<BaseLayoutProps> = ({
+    isLogged = false,
+}) => {
     return (
         <S.container>
-            <Outlet />
-            {children}
+            <S.content>
+                <Outlet />
+            </S.content>
+            {isLogged && (<Menu />)}
         </S.container>
     );
 };

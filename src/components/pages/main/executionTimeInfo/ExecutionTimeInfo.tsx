@@ -2,7 +2,6 @@ import useAppStore from "@hook/useAppStore";
 import UI from "@ui";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import S from "./ExecutionTimeInfo.styled";
 
 // TODO: Refactor:
 // Extract to a separate component
@@ -14,31 +13,30 @@ const ExecutionTimeInfo: React.FC = () => {
 	const time = store.orders.executionTime.time;
 
 	return (
-		<UI.Stack direction="column" gap={3} alignItems="center">
-			<UI.Typography variant="small">Average waiting time</UI.Typography>
+		<UI.Paper>
+			<UI.Stack direction="column" gap={1} >
+				<UI.Typography variant="xxsmall">Average waiting time</UI.Typography>
 
-			<UI.Stack direction="row" gap={3} alignItems="center" >
-				<S.waitngIcon fontSize="small" />
-
-				<UI.Stack direction="column" gap={0.5}>
-					<UI.Stack direction="row" gap={1} alignItems="baseline">
-						{
-							time === null
-								? (
-									<UI.Typography variant="h5">Waiting...</UI.Typography>
-								)
-								: (
-									<>
-										<UI.Typography variant="h2">{time}</UI.Typography>
-										<UI.Typography variant="h5">min</UI.Typography>
-									</>
-								)
-						}
-					</UI.Stack>
-
-				</UI.Stack>
+				<UI.Grid container spacing={2} width="100%">
+					<UI.Grid xs={12}>
+						<UI.Stack direction="row" gap={0.2} alignItems="baseline">
+							{
+								time === null
+									? (
+										<UI.Typography variant="bold">Calculating...</UI.Typography>
+									)
+									: (
+										<>
+											<UI.Typography variant="bold">{time}</UI.Typography>
+											<UI.Typography variant="xxsmall">min</UI.Typography>
+										</>
+									)
+							}
+						</UI.Stack>
+					</UI.Grid>
+				</UI.Grid>
 			</UI.Stack>
-		</UI.Stack>
+		</UI.Paper>
 	);
 }
 

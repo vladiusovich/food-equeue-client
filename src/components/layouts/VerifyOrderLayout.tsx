@@ -1,9 +1,9 @@
 import React from "react";
 import BaseLayout from "./base/BaseLayout";
-import useRoteResolver from "@hook/useRoteResolver";
+import useRouteResolver from "@hook/useRoteResolver";
 
 const VerifyOrderLayout: React.FC = () => {
-	useRoteResolver();
+	useRouteResolver();
     return (
         <BaseLayout />
     );

@@ -4,7 +4,7 @@ import appRoutes from "../router/routes";
 import { useEffect } from "react";
 
 
-const useRoteResolver = () => {
+const useRouteResolver = () => {
     const [searchParams] = useSearchParams();
 
     const appStore = useAppStore();
@@ -43,4 +43,4 @@ const useRoteResolver = () => {
     }, [appStore, appStore.user.auth.isLoggedIn, hash]);
 };
 
-export default useRoteResolver;
+export default useRouteResolver;

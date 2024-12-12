@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import appRoutes from "../../../router/routes";
 
-const OrderCheckWaiting: React.FC = () => {
+const OrderCheckWaitingPage: React.FC = () => {
     const location = useLocation();
 
     const navigate = useNavigate();
@@ -40,4 +40,4 @@ const OrderCheckWaiting: React.FC = () => {
     );
 }
 
-export default observer(OrderCheckWaiting);
+export default observer(OrderCheckWaitingPage);

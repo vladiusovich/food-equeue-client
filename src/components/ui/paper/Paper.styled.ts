@@ -1,12 +1,16 @@
 import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
+import theme from "@styles/Theme";
 
 const S = {
     Paper: styled(Paper)`
-        padding: 1rem 1.5rem;
-        border: 1px solid #b4b4b4;
-        background-color: #e3e3e3 !important;
-        box-shadow: 0 5px 10px rgb(195 195 195) !important;
+        padding: 12px 16px;
+        box-shadow: none !important;
+
+        border: 1px solid;
+        border-radius: ${() => theme.borderRadius.regular} !important;
+        border-color: ${() => theme.colors.border.regular.high};
+        background-color: ${() => theme.colors.background.regular.high};
     `,
 };
 

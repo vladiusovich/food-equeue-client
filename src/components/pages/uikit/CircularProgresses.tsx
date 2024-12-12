@@ -10,7 +10,7 @@ const CircularProgresses: React.FC = () => {
             <UI.Stack direction="row" gap={3}>
                 {
                     sisze.map((size) => (
-                        <CircularProgress size={`${size}rem`} thickness={2.5} />
+                        <CircularProgress key={size} size={`${size}rem`} thickness={2.5} />
                     ))
                 }
             </UI.Stack>

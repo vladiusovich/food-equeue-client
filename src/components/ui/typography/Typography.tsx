@@ -9,7 +9,6 @@ type TypographyProps = {
     children?: React.ReactNode;
 };
 
-// TODO: add colors and other props
 const Typography: React.FC<TypographyProps> = (
     {
         variant = "default",
@@ -18,9 +17,7 @@ const Typography: React.FC<TypographyProps> = (
     }
 ) => {
     const Typo = S[variant as keyof typeof S];
-
     return <Typo $color={color}>{children}</Typo>;
-
 }
 
 export default Typography;

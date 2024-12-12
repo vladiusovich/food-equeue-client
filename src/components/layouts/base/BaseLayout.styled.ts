@@ -3,14 +3,20 @@ import styled from "styled-components";
 
 const S = {
     container: styled.main`
-        min-height: 100vh;
+        height: calc(100vh - 56px);
         box-sizing: border-box;
-        margin: 20px 10px;
+        padding: 20px 10px;
 
         @media (min-width: 768px) {
             max-width: 800px;
-            margin: 20px auto;
+            padding: 20px auto;
         }
+    `,
+
+    content: styled.div`
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     `,
 };
 

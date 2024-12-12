@@ -13,15 +13,23 @@ const ClientInfo: React.FC = () => {
 		store.user.fetch();
 	}, [store]);
 
-	return (
-		<UI.Stack direction="column" gap={1} alignItems="center">
-			<UI.Typography variant="h4">Your number</UI.Typography>
-			{orderId
-				? (<S.clientInfo>{orderId}</S.clientInfo>)
-				: (<UI.Skeleton width="25%" />)
-			}
+	if (store.user.getCustomerOrderRequestStore.loading) {
+		// TODO: Add custom styles skeleton
+		return (
+			<UI.Skeleton variant="rectangular" width="100%" height="100px" />
+		);
+	};
 
-		</UI.Stack>
+	return (
+		<UI.Paper>
+			<UI.Stack direction="column" gap={2} alignItems="center">
+				<UI.Typography variant="bold">Your number</UI.Typography>
+				{orderId
+					? (<UI.Typography variant="h3" color="success.high">{orderId}</UI.Typography>)
+					: (<UI.Skeleton width="25%" />)
+				}
+			</UI.Stack>
+		</UI.Paper>
 	);
 }
 

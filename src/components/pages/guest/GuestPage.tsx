@@ -6,7 +6,7 @@ const GuestPage: React.FC = () => {
     console.log('GuestPage');
 
     return (
-        <UI.Stack direction="column" gap={3} alignItems="center">
+        <UI.Stack direction="column" gap={2} alignItems="center">
             <UI.Typography variant="h3">Welcome to our service</UI.Typography>
 
             <UI.Typography variant="default">
