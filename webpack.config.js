@@ -1,14 +1,34 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { DefinePlugin } = require("webpack");
+const dotenv = require('dotenv');
+const webpack = require('webpack');
 
-const basePath = "./src";
+/* TODO:
+    Load environment variables depending on NODE_ENV
+    For example, if NODE_ENV is 'development', load .env.dev else load .env.prod, .env.prodB, etc.
+*/
+const envFile = `.env`;
+const env = dotenv.config({ path: envFile }).parsed || {};
+
+// Convert all env vars into stringified form so DefinePlugin can use them
+const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+}, {});
+
+console.debug('[build][env]:', {
+    envFile,
+    env,
+    envKeys,
+});
 
 module.exports = (env, process) => {
-    console.debug('Init webpack:', {
+    console.debug('[build][webpack]:', {
         process,
         env,
     });
+
+    const basePath = "./src";
 
     return {
         entry: './src/index.tsx',
@@ -63,22 +83,14 @@ module.exports = (env, process) => {
                 },
             ]
         },
+        // devtool: 'cheap-module-source-map', // Set the devtool for debugging
         plugins: [
             new HtmlWebpackPlugin({
                 template: './public/index.html'
             }),
-            // TODO
-            new DefinePlugin({
-                'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL),
-                'process.env.REACT_APP_SOCKET_URL': JSON.stringify(process.env.REACT_APP_SOCKET_URL),
-            }),
-            // new Dotenv(),
+            new webpack.DefinePlugin(envKeys),
         ],
         devServer: {
-            static: {
-                directory: path.join(__dirname, 'dist')
-            },
-            compress: true,
             port: 3005,
             open: false, // Automatically open the browser
             hot: true   // Enable hot module replacement
