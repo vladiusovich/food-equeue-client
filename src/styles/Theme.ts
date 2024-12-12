@@ -1,5 +1,6 @@
 import ThemeType from "./types/ThemeType";
 
+// TODO:
 const theme: ThemeType = {
     colors: {
         typo: {

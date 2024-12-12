@@ -1,40 +1,63 @@
 import UI, { TypoVariant } from "@ui";
 import React from "react";
 import typography from "@typography";
-import { NestedColorType } from "@styles/types/ColorsType";
+import { ColorPriorityType, ColorVariantType } from "@styles/types/ColorsType";
 import { Button } from "@mui/material";
 
-const buttonVariants: { variant: string, color: string, value: NestedColorType }[] = [
-    { value: 'regular.medium', variant: 'outlined', color: 'primary' },
-    { value: 'success.medium', variant: 'outlined', color: 'secondary' },
-    { value: 'warning.medium', variant: 'outlined', color: 'warning' },
-    { value: 'danger.medium', variant: 'outlined', color: 'error' },
+const buttonVariants: ColorVariantType[] = [
+    'regular',
+    'success',
+    'danger',
+    'warning',
+];
+
+const buttonColorPriority: ColorPriorityType[] = [
+    'peak',
+    'highest',
+    'higher',
+    'high',
+    'medium',
+    'low',
 ];
 
 const Typography: React.FC = () => {
     const typos = Object.keys(typography) as Array<TypoVariant>;
-    const [currentColor, setCurrentColor] = React.useState<NestedColorType>("regular.medium");
+    const [currentVariantColor, setCurrentVariantColor] = React.useState<ColorVariantType>("regular");
+    const [currentColorPriority, setCurrentColorPriority] = React.useState<ColorPriorityType>("highest");
 
     return (
         <UI.Paper>
             <UI.Stack direction="column" gap={2}>
                 <UI.Typography variant="bold">Color variant</UI.Typography>
 
-                <UI.Stack direction="row" justifyContent="center" gap={1}>
-                    {buttonVariants.map((button) => (
+                <UI.Stack direction="row" gap={1}>
+                    {buttonVariants.map((variant) => (
                         <Button
-                            key={button.value}
+                            key={variant}
                             variant="contained"
-                            onClick={() => setCurrentColor(button.value)}
+                            onClick={() => setCurrentVariantColor(variant)}
                         >
-                            {button.value}
+                            {variant}
+                        </Button>
+                    ))}
+                </UI.Stack>
+
+                <UI.Typography variant="bold">Color priority</UI.Typography>
+                <UI.Stack direction="row" gap={1}>
+                    {buttonColorPriority.map((priority) => (
+                        <Button
+                            key={priority}
+                            variant="outlined"
+                            onClick={() => setCurrentColorPriority(priority)}
+                        >
+                            {priority}
                         </Button>
                     ))}
                 </UI.Stack>
 
                 <UI.Stack direction="column" gap={2}>
                     {typos.map((typo) => (
-                        <UI.Typography key={typo} variant={typo} color={currentColor}>
+                        <UI.Typography key={typo} variant={typo} color={`${currentVariantColor}.${currentColorPriority}`}>
                             {typo}
                         </UI.Typography>
                     ))}
