@@ -1,9 +1,11 @@
-import typography from "@typography";
+import { NestedColorType } from "@styles/types/ColorsType";
+import S from "./Typography.styled";
 
-export type TypoVariant = keyof typeof typography;
+export type TypoVariant = keyof typeof S;
 
 type TypographyProps = {
     variant: TypoVariant;
+    color?: NestedColorType;
     children?: React.ReactNode;
 };
 
@@ -11,12 +13,13 @@ type TypographyProps = {
 const Typography: React.FC<TypographyProps> = (
     {
         variant = "default",
+        color = "regular.medium",
         children,
     }
 ) => {
-    const Typo = typography[variant as keyof typeof typography];
+    const Typo = S[variant as keyof typeof S];
 
-    return <Typo key={variant}>{children}</Typo>;
+    return <Typo $color={color}>{children}</Typo>;
 
 }
 

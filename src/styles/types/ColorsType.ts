@@ -1,20 +1,22 @@
-export interface ColorPaletteType {
-    peak: string;
-    highest: string;
-    higher: string;
-    high: string;
-    medium: string;
-    low: string;
-}
+export type ColorPriorityType = "peak" | "highest" | "higher" | "high" | "medium" | "low";
 
-export interface BorderPaletteType extends ColorPaletteType {
-    focus: string;
-}
+export type ColorVariantType = "regular" | "danger" | "success" | "warning";
+
+export type PriorityColorMapping = {
+    [key in ColorPriorityType]: string;
+};
+
+export type VariantColorScheme = {
+    [key in ColorVariantType]: PriorityColorMapping;
+};
+
+export type NestedColorType = `${ColorVariantType}.${ColorPriorityType}`;
 
 interface StylesColorsType {
-    typo: ColorPaletteType;
-    background: ColorPaletteType;
-    border: BorderPaletteType;
-}
+    typo: VariantColorScheme;
+    background: VariantColorScheme;
+    border: VariantColorScheme;
+};
+
 
 export default StylesColorsType;
