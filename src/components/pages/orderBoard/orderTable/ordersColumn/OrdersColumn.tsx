@@ -11,13 +11,12 @@ const OrdersColumn: React.FC<Props> = ({
     children,
 }) => {
     return (
-        <UI.Stack direction="column" gap={1} >
-            <UI.Typography variant="h4"> {title} </UI.Typography>
-
+        <UI.Stack direction="column" alignItems="center" gap={1}>
+            <UI.Typography variant="bold"> {title} </UI.Typography>
             <UI.Stack direction="column" gap={1} alignItems="stretch">
                 {children}
             </UI.Stack>
-        </UI.Stack>
+        </UI.Stack >
     );
 }
 

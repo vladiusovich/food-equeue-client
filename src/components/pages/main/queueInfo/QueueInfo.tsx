@@ -42,7 +42,6 @@ const QueueInfo: React.FC = () => {
 				</UI.Paper>
 			</UI.Grid>
 
-
 			<UI.Grid xs={12}>
 				<UI.Paper>
 					<QueueItem title="Ready:" value={ready} />

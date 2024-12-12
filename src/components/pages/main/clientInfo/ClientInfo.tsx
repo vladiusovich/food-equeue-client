@@ -1,6 +1,5 @@
 import UI from "@ui";
 import React, { useEffect } from "react";
-import S from "./ClientInfo.styled";
 import useAppStore from "@hook/useAppStore";
 import { observer } from "mobx-react-lite";
 
@@ -13,7 +12,7 @@ const ClientInfo: React.FC = () => {
 		store.user.fetch();
 	}, [store]);
 
-	if (store.user.getCustomerOrderRequestStore.loading) {
+	if (!orderId) {
 		// TODO: Add custom styles skeleton
 		return (
 			<UI.Skeleton variant="rectangular" width="100%" height="100px" />

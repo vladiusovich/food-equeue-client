@@ -2,6 +2,7 @@ import UI from "@ui";
 import React from "react";
 import { observer } from "mobx-react-lite";
 import GradeIcon from '@mui/icons-material/Grade';
+import S from "./OrderItem.styled";
 
 interface Props {
     value: string | number;
@@ -14,12 +15,12 @@ const OrderItem: React.FC<Props> = ({
 }) => {
     if (isCurrent) {
         return (
-            <UI.Chip icon={<GradeIcon />} label={value} color="primary" />
+            <S.chip icon={<GradeIcon />} label={value} color="primary" $isCurrent />
         );
     }
 
     return (
-        <UI.Chip label={value} />
+        <S.chip label={value} />
     );
 }
 

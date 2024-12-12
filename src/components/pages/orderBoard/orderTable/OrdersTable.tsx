@@ -15,19 +15,25 @@ const OrdersTable: React.FC = () => {
     const ordersStatus = store.orders.ordersProgress;
 
     return (
-        <UI.Stack direction="row" gap={1} justifyContent="space-evenly">
-            <OrdersColumn title="In progress">
-                {ordersStatus.inProgress.map((order) => (
-                    <OrderItem key={order.id} value={order.id} isCurrent={order.isCurrent} />
-                ))}
-            </OrdersColumn>
+        <UI.Paper>
+            <UI.Grid container spacing={1}>
+                <UI.Grid xs={6}>
+                    <OrdersColumn title="In progress">
+                        {ordersStatus.inProgress.map((order) => (
+                            <OrderItem key={order.id} value={order.id} isCurrent={order.isCurrent} />
+                        ))}
+                    </OrdersColumn>
+                </UI.Grid>
 
-            <OrdersColumn title="Done">
-                {ordersStatus.ready.map((order) => (
-                    <OrderItem key={order.id} value={order.id} isCurrent={order.isCurrent} />
-                ))}
-            </OrdersColumn>
-        </UI.Stack>
+                <UI.Grid xs={6}>
+                    <OrdersColumn title="Done">
+                        {ordersStatus.ready.map((order) => (
+                            <OrderItem key={order.id} value={order.id} isCurrent={order.isCurrent} />
+                        ))}
+                    </OrdersColumn>
+                </UI.Grid>
+            </UI.Grid>
+        </UI.Paper>
     );
 }
 
