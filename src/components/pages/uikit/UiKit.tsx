@@ -2,9 +2,9 @@ import UI from "@ui";
 import React from "react";
 import Typography from "./Typography";
 import Skeletons from "./Skeletons";
-import { CircularProgress } from "@mui/material";
 import Buttons from "./Buttons";
 import Chips from "./Chips";
+import CircularProgresses from "./CircularProgresses";
 
 // TODO: split to tabs
 const UiKit: React.FC = () => {
@@ -16,8 +16,8 @@ const UiKit: React.FC = () => {
                 <Typography />
                 <Buttons />
                 <Chips />
+                <CircularProgresses />
                 <Skeletons />
-                <CircularProgress size="6rem" thickness={2.5} />
             </UI.Stack>
         </div>
     );

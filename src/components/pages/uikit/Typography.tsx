@@ -1,9 +1,9 @@
-import UI from "@ui";
+import UI, { TypoVariant } from "@ui";
 import React from "react";
 import typography from "@typography";
 
 const Typography: React.FC = () => {
-    const typos = Object.keys(typography) as Array<keyof typeof typography>;
+    const typos = Object.keys(typography) as Array<TypoVariant>;
 
     return (
         <UI.Paper>

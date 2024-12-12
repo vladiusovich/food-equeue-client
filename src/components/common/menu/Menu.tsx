@@ -5,6 +5,7 @@ import UI from "@ui";
 import appRoutes from "../../../router/routes";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import QueueIcon from '@mui/icons-material/Queue';
+import S from "./Menu.styled";
 
 interface NavigationItem {
 	label: string;
@@ -40,7 +41,7 @@ const Menu: React.FC = () => {
 	};
 
 	return (
-		<UI.Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+		<S.container>
 			<UI.BottomNavigation value={selectedValue} onChange={handleNavigate}>
 				{navigationItems.map((item) => (
 					<UI.BottomNavigationAction
@@ -51,7 +52,7 @@ const Menu: React.FC = () => {
 					/>
 				))}
 			</UI.BottomNavigation>
-		</UI.Paper>
+		</S.container>
 	);
 }
 
