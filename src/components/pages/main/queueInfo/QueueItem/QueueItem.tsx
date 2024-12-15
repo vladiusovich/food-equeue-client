@@ -10,7 +10,11 @@ const QueueItem: React.FC<Props> = ({ title, value }) => {
 	return (
 		<UI.Stack direction="column" gap={1} >
 			<UI.Typography variant="xxsmall">{title}</UI.Typography>
-			<UI.Typography variant="bold">{value}</UI.Typography>
+
+			<UI.Stack direction="row" gap={0.5} alignItems="baseline">
+				<UI.Typography variant="bold">{value}</UI.Typography>
+				<UI.Typography variant="xxsmall">orders</UI.Typography>
+			</UI.Stack>
 		</UI.Stack>
 	);
 }

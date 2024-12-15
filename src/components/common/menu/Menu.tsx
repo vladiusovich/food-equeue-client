@@ -42,13 +42,17 @@ const Menu: React.FC = () => {
 
 	return (
 		<S.container>
-			<UI.BottomNavigation value={selectedValue} onChange={handleNavigate}>
+			<UI.BottomNavigation
+				value={selectedValue}
+				onChange={handleNavigate}
+			>
 				{navigationItems.map((item) => (
 					<UI.BottomNavigationAction
 						key={item.value}
 						label={item.label}
 						value={item.value}
 						icon={item.icon}
+						showLabel={true}
 					/>
 				))}
 			</UI.BottomNavigation>
