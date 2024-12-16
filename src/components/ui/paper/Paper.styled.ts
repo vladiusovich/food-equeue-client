@@ -7,9 +7,9 @@ const S = {
         box-shadow: none !important;
 
         border: 1px solid;
-        border-radius: ${({ theme }) => theme.borderRadius.regular} !important;
-        border-color: ${({ theme }) => theme.colors.border.regular.high};
-        background-color: ${({ theme }) => theme.colors.background.regular.high};
+        border-radius: ${({ theme }) => theme.border.radius.regular} !important;
+        border-color: ${({ theme }) => theme.colors.border.regular.main};
+        background-color: ${({ theme }) => theme.colors.background.regular.main};
     `,
 };
 

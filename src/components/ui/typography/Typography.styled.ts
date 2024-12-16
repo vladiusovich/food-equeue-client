@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import typography from "@typography";
-import { ColorPriorityType, ColorVariantType, NestedColorType } from "@styles/types/ColorsType";
+import { SimplePaletteColorOptions, ColorVariantType, NestedColorType } from "@styles/types/ColorsType";
 import { TypoVariant } from "./Typography";
 
 // Helper to retrieve dynamic color
@@ -9,7 +9,7 @@ const getColor = (color: NestedColorType, theme: any): string => {
         return "inherit";
     }
 
-    const [variant, priority] = color.split(".") as [ColorVariantType, ColorPriorityType];
+    const [variant, priority] = color.split(".") as [ColorVariantType, SimplePaletteColorOptions];
 
     return theme.colors.typo[variant]?.[priority] || "inherit";
 };

@@ -21,10 +21,10 @@ const ClientInfo: React.FC = () => {
 
 	return (
 		<UI.Paper>
-			<UI.Stack direction="column" gap={2} alignItems="center">
+			<UI.Stack direction="column" gap={1} alignItems="center">
 				<UI.Typography variant="bold">Your number</UI.Typography>
 				{orderId
-					? (<UI.Typography variant="h3" color="success.high">{orderId}</UI.Typography>)
+					? (<UI.Typography variant="h3">{orderId}</UI.Typography>)
 					: (<UI.Skeleton width="25%" />)
 				}
 			</UI.Stack>

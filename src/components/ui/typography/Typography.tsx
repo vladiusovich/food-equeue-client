@@ -12,7 +12,7 @@ type TypographyProps = {
 const Typography: React.FC<TypographyProps> = (
     {
         variant = "default",
-        color = "regular.highest",
+        color = "regular.main",
         children,
     }
 ) => {

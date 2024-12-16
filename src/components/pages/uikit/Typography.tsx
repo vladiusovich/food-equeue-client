@@ -1,7 +1,7 @@
 import UI, { TypoVariant } from "@ui";
 import React from "react";
 import typography from "@typography";
-import { ColorPriorityType, ColorVariantType } from "@styles/types/ColorsType";
+import { SimplePaletteColorOptions, ColorVariantType } from "@styles/types/ColorsType";
 import { Button } from "@mui/material";
 
 const buttonVariants: ColorVariantType[] = [
@@ -11,19 +11,16 @@ const buttonVariants: ColorVariantType[] = [
     'warning',
 ];
 
-const buttonColorPriority: ColorPriorityType[] = [
-    'peak',
-    'highest',
-    'higher',
-    'high',
-    'medium',
-    'low',
+const buttonColorPriority: SimplePaletteColorOptions[] = [
+    'light',
+    'main',
+    'dark',
 ];
 
 const Typography: React.FC = () => {
     const typos = Object.keys(typography) as Array<TypoVariant>;
     const [currentVariantColor, setCurrentVariantColor] = React.useState<ColorVariantType>("regular");
-    const [currentColorPriority, setCurrentColorPriority] = React.useState<ColorPriorityType>("highest");
+    const [currentColorPriority, setCurrentColorPriority] = React.useState<SimplePaletteColorOptions>("main");
 
     return (
         <UI.Paper>

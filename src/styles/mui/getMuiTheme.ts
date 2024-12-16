@@ -1,27 +1,18 @@
 import { createTheme, PaletteMode, Shadows } from "@mui/material";
+import ThemeType from "@styles/types/ThemeType";
 
 const getMuiTheme = (theme: ThemeType) => createTheme(
     {
         typography: {
-            fontFamily: "Inter",
+            fontFamily: theme.typography.fontFamily,
         },
         palette: {
             mode: theme.mode.toLowerCase() as PaletteMode,
             primary: {
-                main: theme.colors.typo.regular.highest,
+                main: theme.colors.typo.regular.main,
             },
         },
         shadows: Array<"none">(25).fill("none") as Shadows,
-        // components: {
-        //     MuiButton: getMuiButtonTheme(theme),
-        //     MuiTextField: getMuiTextFieldTheme(),
-        //     MuiSwitch: getMuiSwitchTheme(theme),
-        //     MuiPaper: getMuiPaperTheme(theme),
-        //     MuiMenu: getMuiMenuTheme(),
-        //     MuiMenuItem: getMuiMenuItemTheme(theme),
-        //     MuiSkeleton: getMuiSkeletonTheme(theme),
-        //     MuiPaginationItem: getMuiPaginationItemTheme(theme),
-        // },
     },
 );
 

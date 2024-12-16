@@ -3,7 +3,7 @@ import UI from "@ui";
 
 const S = {
 	paper: styled(UI.Paper)`
-		background-color: ${({ theme }) => theme.colors.background.success.highest} !important;
+		background-color: ${({ theme }) => theme.colors.background.success.main} !important;
 	`,
 };
 
