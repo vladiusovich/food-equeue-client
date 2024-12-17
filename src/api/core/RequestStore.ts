@@ -1,4 +1,4 @@
-import { makeObservable, observable } from 'mobx';
+import { makeObservable, observable, runInAction } from 'mobx';
 import instance from './instanceApi';
 
 type RequestOptionsType = {
@@ -39,7 +39,9 @@ class RequestStore<RequestDataType, ResponseDataType> {
     public execute = async (data: RequestDataType) => {
         if (this.isCacheValid()) return;
 
-        this.loading = true;
+        runInAction(() => {
+            this.loading = true;
+        });
 
         try {
             const response = await instance.request<ResponseDataType>({
@@ -48,12 +50,19 @@ class RequestStore<RequestDataType, ResponseDataType> {
                 params: this.options.useParams ? data : undefined,
             });
 
-            this.data = response.data;
+            runInAction(() => {
+                this.data = response.data;
+            });
+
             this.cacheTimestamp = Date.now();
         } catch (error) {
-            this.error = error;
+            runInAction(() => {
+                this.error = error;
+            });
         } finally {
-            this.loading = false;
+            runInAction(() => {
+                this.loading = false;
+            });
         }
     }
 }

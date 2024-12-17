@@ -1,12 +1,18 @@
 import { Socket } from "socket.io-client";
 import OrdersStatus from "@type/orders/OrdersStatus";
 import CustomerEventType, { customerEvents } from "@type/events/CustomerEventType";
+import { runInAction } from "mobx";
 
 interface DataSource {
     ordersStatus?: OrdersStatus;
     executionTime?: number;
 }
 
+/*
+    TODO: reimpliment. I has to be more generic and reusable
+    Avoid using hardcoded event names (line 48)
+    Avoid using hardcoded data types (OrdersStatus, number)
+*/
 class SocketApiProvider {
     private socket: Socket;
     public data: DataSource = {} as DataSource;
@@ -56,12 +62,16 @@ class SocketApiProvider {
 
     private handleUpdateExecutionTime(data: number) {
         console.debug("Execution time updated", data);
-        this.data.executionTime = data;
+        runInAction(() => {
+            this.data.executionTime = data;
+        });
     }
 
     private handleUpdateOrders(data: OrdersStatus) {
         console.debug("Orders updated", data);
-        this.data.ordersStatus = data;
+        runInAction(() => {
+            this.data.ordersStatus = data;
+        });
     }
 }
 
