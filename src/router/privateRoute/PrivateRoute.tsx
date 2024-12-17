@@ -1,8 +1,8 @@
 import useAppStore from '@hook/useAppStore';
 import { observer } from 'mobx-react-lite';
-import ClientLayout from '../../components/layouts/ClientLayout';
 import { Navigate } from 'react-router-dom';
 import appRoutes from '../routes';
+import ClientLayout from '@components/layouts/ClientLayout';
 
 const PrivateRoute = () => {
     const appStore = useAppStore();

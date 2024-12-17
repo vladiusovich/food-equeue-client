@@ -41,6 +41,7 @@ module.exports = (env, process) => {
             alias: {
                 '@ui': path.resolve(__dirname, `${basePath}/components/ui`),
                 '@api': path.resolve(__dirname, `${basePath}/api`),
+                '@components': path.resolve(__dirname, `${basePath}/components`),
                 '@type': path.resolve(__dirname, `${basePath}/types`),
                 '@hook': path.resolve(__dirname, `${basePath}/hooks`),
                 '@styles': path.resolve(__dirname, `${basePath}/styles`),
