@@ -10,20 +10,10 @@ const RedirectHandler: React.FC = () => {
     const hash = searchParams.get('hash');
 
     useEffect(() => {
-        if (appStore.user.auth.isLoggedIn) {
-            navigate(appRoutes.home);
-            return;
-        }
-
         if (hash) {
             navigate(appRoutes.customerProcess, { state: { hash }, replace: true });
             return;
         }
-
-        if (!appStore.user.auth.isLoggedIn && !hash) {
-            navigate(appRoutes.guest, { replace: true });
-        }
-
     }, [appStore, appStore.user.auth.isLoggedIn, hash]);
 
     return null;

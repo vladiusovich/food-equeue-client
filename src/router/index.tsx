@@ -1,7 +1,4 @@
 import { createHashRouter } from 'react-router-dom';
-import MainPage from '../components/pages/main/MainPage';
-import App from '../components/App';
-import OrdersBoardPage from '../components/pages/orderBoard/OrdersBoardPage';
 import OrderCheckWaitingPage from '../components/pages/orderCheckWaiting/OrderCheckWaitingPage';
 import appRoutes from './routes';
 import NotFoundPage from '@common/notFoundPage/NotFoundPage';
@@ -10,26 +7,17 @@ import GuestLayout from '../components/layouts/GuestLayout';
 import VerifyOrderLayout from '../components/layouts/VerifyOrderLayout';
 import UiKit from '../components/pages/uikit/UiKit';
 import RedirectHandler from './RedirectHandler';
-
+import privateAreaRoutes from './privateRoute/privateAreaRoutes';
 
 const router = createHashRouter([
     {
         path: appRoutes.root,
-        element: <App />,
-        children: [
-            {
-                path: appRoutes.root,
-                element: <RedirectHandler />,
-            },
-            {
-                path: appRoutes.home,
-                element: <MainPage />,
-            },
-            {
-                path: appRoutes.ordersBoard,
-                element: <OrdersBoardPage />,
-            },
-        ],
+        index: true,
+        element: <RedirectHandler />,
+    },
+    {
+        path: appRoutes.root,
+        ...privateAreaRoutes,
     },
     {
         path: appRoutes.customerProcess,
@@ -52,6 +40,7 @@ const router = createHashRouter([
         ],
     },
     {
+        // TODO: only in dev mode
         path: appRoutes.uikit,
         element: <UiKit />,
     },

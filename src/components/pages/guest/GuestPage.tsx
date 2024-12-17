@@ -1,10 +1,7 @@
 import UI from "@ui";
-import { observer } from "mobx-react-lite";
 import React from "react";
 
 const GuestPage: React.FC = () => {
-    console.log('GuestPage');
-
     return (
         <UI.Stack direction="column" gap={2} alignItems="center">
             <UI.Typography variant="h3">Welcome to our service</UI.Typography>
@@ -17,4 +14,4 @@ const GuestPage: React.FC = () => {
     );
 }
 
-export default observer(GuestPage);
+export default GuestPage;

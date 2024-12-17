@@ -13,26 +13,25 @@ const OrderCheckWaitingPage: React.FC = () => {
 
     const appStore = useAppStore();
 
+    // TODO: reimplement this
     useEffect(() => {
-        (async () => {
-            console.log('OrderCheckWaitingPage', {
-                location: window.location,
-            });
-
-            appStore.user.auth.logout();
-            await appStore.user.auth.login(hash);
-
-            if (appStore.user.auth.isLoggedIn) {
-                /* TODO: reimplement this
-                    I cant fix case when redirect from this page the hash=someHash is still in the url
-                */
-                window.history.replaceState({}, '', window.location.pathname + window.location.hash);
-                navigate(appRoutes.home);
+        const handleRedirect = async () => {
+            if (hash) {
+                appStore.user.auth.logout();
+                await appStore.user.auth.login(hash);
+                navigate(appRoutes.home, { replace: true });
+            } else if (appStore.user.auth.isLoggedIn) {
+                navigate(appRoutes.home, { replace: true });
             } else {
-                // TODO: handle case when user can't login
-                navigate(appRoutes.guest);
+                navigate(appRoutes.guest, { replace: true });
             }
-        })();
+
+            // TODO: Reimplement this
+            // Can't fix the case when redirecting from this page leaves hash=someHash in the URL
+            window.history.replaceState({}, '', window.location.pathname + window.location.hash);
+        };
+
+        handleRedirect();
     }, [hash]);
 
     return (
