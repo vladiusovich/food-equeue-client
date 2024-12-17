@@ -7,7 +7,6 @@ import appRoutes from "../../../router/routes";
 
 const OrderCheckWaitingPage: React.FC = () => {
     const location = useLocation();
-
     const navigate = useNavigate();
 
     const hash = location.state?.hash;
@@ -15,16 +14,26 @@ const OrderCheckWaitingPage: React.FC = () => {
     const appStore = useAppStore();
 
     useEffect(() => {
-        appStore.user.auth.logout();
-        appStore.user.auth.login(hash);
+        (async () => {
+            console.log('OrderCheckWaitingPage', {
+                location: window.location,
+            });
 
-        if (appStore.user.auth.isLoggedIn) {
-            navigate(appRoutes.home);
-        } else {
-            // TODO: handle case when user can't login
-            navigate(appRoutes.guest);
-        }
-    }, [hash, appStore.user.auth.isLoggedIn]);
+            appStore.user.auth.logout();
+            await appStore.user.auth.login(hash);
+
+            if (appStore.user.auth.isLoggedIn) {
+                /* TODO: reimplement this
+                    I cant fix case when redirect from this page the hash=someHash is still in the url
+                */
+                window.history.replaceState({}, '', window.location.pathname + window.location.hash);
+                navigate(appRoutes.home);
+            } else {
+                // TODO: handle case when user can't login
+                navigate(appRoutes.guest);
+            }
+        })();
+    }, [hash]);
 
     return (
         <UI.Stack direction="column" gap={3} alignItems="center">

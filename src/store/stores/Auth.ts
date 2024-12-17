@@ -39,7 +39,7 @@ class AuthStore {
     }
 
     public get isLoggedIn(): boolean {
-        return !!this.accessToken ?? false;
+        return !!this.accessToken;
     }
 
     public get hash(): string | null {

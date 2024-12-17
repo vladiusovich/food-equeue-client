@@ -9,16 +9,17 @@ import GuestPage from '../components/pages/guest/GuestPage';
 import GuestLayout from '../components/layouts/GuestLayout';
 import VerifyOrderLayout from '../components/layouts/VerifyOrderLayout';
 import UiKit from '../components/pages/uikit/UiKit';
+import RedirectHandler from './RedirectHandler';
 
 
 const router = createHashRouter([
     {
-        path: "/",
-        element: <App />, // ClientLayout
+        path: appRoutes.root,
+        element: <App />,
         children: [
             {
                 path: appRoutes.root,
-                element: <MainPage />,
+                element: <RedirectHandler />,
             },
             {
                 path: appRoutes.home,

@@ -1,0 +1,32 @@
+import { useNavigate } from "react-router-dom";
+import useAppStore from "@hook/useAppStore";
+import appRoutes from "./routes";
+import { useEffect } from "react";
+
+const RedirectHandler: React.FC = () => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const navigate = useNavigate();
+    const appStore = useAppStore();
+    const hash = searchParams.get('hash');
+
+    useEffect(() => {
+        if (appStore.user.auth.isLoggedIn) {
+            navigate(appRoutes.home);
+            return;
+        }
+
+        if (hash) {
+            navigate(appRoutes.customerProcess, { state: { hash }, replace: true });
+            return;
+        }
+
+        if (!appStore.user.auth.isLoggedIn && !hash) {
+            navigate(appRoutes.guest, { replace: true });
+        }
+
+    }, [appStore, appStore.user.auth.isLoggedIn, hash]);
+
+    return null;
+};
+
+export default RedirectHandler;

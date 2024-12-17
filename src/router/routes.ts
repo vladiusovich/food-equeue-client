@@ -3,7 +3,6 @@ export interface AppRoutes {
     home: string;
     ordersBoard: string;
     customerProcess: string;
-
     guest: string;
     uikit: string;
 };
