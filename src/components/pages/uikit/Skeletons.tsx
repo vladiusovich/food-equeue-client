@@ -11,7 +11,6 @@ const Skeletons: React.FC = () => {
             <Skeleton variant="text" width="50%" />
 
             {/* Rectangular Skeleton */}
-            Rectangular Variant:
             <Skeleton variant="rectangular" width={300} height={200} />
             <Skeleton variant="rectangular" width={150} height={100} sx={{ marginTop: 2 }} />
 

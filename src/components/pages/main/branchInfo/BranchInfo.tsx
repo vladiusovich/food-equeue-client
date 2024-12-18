@@ -22,7 +22,7 @@ const BranchInfo: React.FC = () => {
 		<UI.Paper>
 			<UI.Stack direction="column" gap={0.5} alignItems="center">
 				<UI.Typography variant="bold"> {info?.name} </UI.Typography>
-				<UI.Typography variant="xsmall">{info?.address}</UI.Typography>
+				<UI.Typography variant="xxsmall">{info?.address}</UI.Typography>
 			</UI.Stack>
 		</UI.Paper>
 	);
