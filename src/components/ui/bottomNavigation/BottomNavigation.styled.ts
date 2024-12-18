@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const S = {
     bottomNavigation: styled(BottomNavigation)`
-        border: 1px solid;
     `,
 };
 

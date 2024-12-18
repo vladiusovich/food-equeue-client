@@ -3,7 +3,6 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Skeleton from "@mui/material/Skeleton";
 import CircularProgress from "@mui/material/CircularProgress";
 
-
 import IconButton from "./iconButton/IconButton";
 
 import Divider from '@mui/material/Divider';
@@ -11,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
-import Chip from "@mui/material/Chip";
+import Chip from "./chip/Chip";
 import Paper from "./paper/Paper";
 import Stack from "./stack/Stack";
 import Button from "./button/Button";

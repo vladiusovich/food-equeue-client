@@ -1,5 +1,6 @@
 import { createTheme, PaletteMode, Shadows } from "@mui/material";
 import ThemeType from "@styles/types/ThemeType";
+import { overrideComponentStyles } from "./createComponentStyles";
 
 const getMuiTheme = (theme: ThemeType) => createTheme(
     {
@@ -13,6 +14,7 @@ const getMuiTheme = (theme: ThemeType) => createTheme(
             },
         },
         shadows: Array<"none">(25).fill("none") as Shadows,
+        components: overrideComponentStyles(theme) as any,
     },
 );
 

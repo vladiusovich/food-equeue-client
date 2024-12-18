@@ -7,8 +7,8 @@ const GlobalStyles = createGlobalStyle`
         font-weight: 400;
         font-size: 16px;
         line-height: 160%;
-
-        background-color: ${({ theme }) => theme.colors.background.regular.main};
+        background: linear-gradient(to bottom right, #1d2e69db, #8d317f);
+        background-attachment: fixed;
     }
 
     input:-webkit-autofill,

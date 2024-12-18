@@ -29,7 +29,7 @@ const theme: AppThemeType = {
         },
         background: {
             regular: {
-                light: "#2a2a2a",   // Dark gray for secondary background
+                light: "#121212cf",   // Dark gray for secondary background
                 main: "#1c1c1c",    // Deep black-gray for primary background
                 dark: "#121212",    // Near black for darker regions
             },
