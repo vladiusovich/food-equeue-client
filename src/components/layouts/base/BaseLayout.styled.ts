@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const S = {
     container: styled.main`
-        height: calc(100vh - 56px);
+        min-height: calc(100vh - 56px);
         box-sizing: border-box;
         margin: 20px 15px;
 
