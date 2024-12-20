@@ -59,6 +59,8 @@ class RequestStore<RequestDataType, ResponseDataType> {
             runInAction(() => {
                 this.error = error;
             });
+
+            throw error;
         } finally {
             runInAction(() => {
                 this.loading = false;

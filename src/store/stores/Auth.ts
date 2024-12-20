@@ -1,6 +1,6 @@
 import PostCustomerIdenitify from "@api/requests/postCustomerIdenitify/PostCustomerIdenitify";
 import { makeObservable, observable, action, computed, runInAction } from "mobx"
-import { ACCESS_TOKEN } from "../../const/authConstans";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../const/authConstans";
 
 class AuthStore {
     public accessToken?: string | null = localStorage.getItem(ACCESS_TOKEN);
@@ -29,6 +29,7 @@ class AuthStore {
 
                 runInAction(() => {
                     localStorage.setItem(ACCESS_TOKEN, this.accessToken!);
+                    localStorage.setItem(REFRESH_TOKEN, info.refresh_token);
                     localStorage.setItem('hash', hash);
                 });
 

@@ -1,29 +1,18 @@
 import axios from "axios";
 import appConfig from "../../config/appConfig";
-import { ACCESS_TOKEN } from "../../const/authConstans";
+import { successRequestInterceptor } from "./interceptors/request";
+import RefreshTokenInterceptor from "./interceptors/RefreshTokenInterceptor";
 
 const instance = axios.create({
     baseURL: appConfig.api.apiUrl,
     timeout: 3000,
-    // headers: {'X-Custom-Header': 'foobar'}
 });
 
-// TODO
-// Add a request interceptor
-instance.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem(ACCESS_TOKEN);
+instance.interceptors.request.use(successRequestInterceptor);
 
-        if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
-        }
-
-        return config;
-    },
-    (error) => {
-        // Handle the error
-        return Promise.reject(error);
-    }
+instance.interceptors.response.use(
+    (response) => response,
+    new RefreshTokenInterceptor(instance).handle
 );
 
 export default instance;
