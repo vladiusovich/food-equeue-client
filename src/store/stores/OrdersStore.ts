@@ -1,35 +1,22 @@
 import { makeObservable, computed } from "mobx"
-import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
 import ExecutionTimeStore from "./ExecutionTimeStore";
 import GetOrderStatusRequestStore from "@api/requests/getOrderStatus/GetOrderStatusRequestStore";
 import UserStore from "./UserStore";
 import OrdersProgressStatus from "@type/orders/OrdersProgressStatus";
+import RuntimeDataStore from "../core/RuntimeDataStore";
+import { RuntimeDataType } from "../types/RuntimeDataType";
 
 const isCurrentUserOrder = (orderId: string | number, userOrderId: string | number) => (orderId === userOrderId);
-
-// TODO: bug fix: userId does not appear in the first place
-const reorderReadyOrders = (orders: string[], userOrderId: string) => {
-    const userOrderIndex = orders.findIndex((order) => isCurrentUserOrder(order, userOrderId));
-
-    if (userOrderIndex !== -1) {
-        const [userOrder] = orders.splice(userOrderIndex, 1);
-        return [{ id: userOrder, isCurrent: true }, ...orders.map((order) => ({ id: order, isCurrent: false }))];
-    }
-
-    return orders.map((order) => ({ id: order, isCurrent: false }));
-}
 
 class OrdersStore {
     public executionTime: ExecutionTimeStore;
 
     public userStore: UserStore;
 
-    private apiProvider: SocketApiProvider;
-
     private getOrderStatusRequestStore: GetOrderStatusRequestStore = new GetOrderStatusRequestStore();
 
     constructor(
-        apiProvider: SocketApiProvider,
+        private dataRepository: RuntimeDataStore<RuntimeDataType>,
         executionTime: ExecutionTimeStore,
         userStore: UserStore,
     ) {
@@ -37,7 +24,6 @@ class OrdersStore {
             ordersProgress: computed,
         });
 
-        this.apiProvider = apiProvider;
         this.executionTime = executionTime;
         this.userStore = userStore;
     }
@@ -47,7 +33,7 @@ class OrdersStore {
     }
 
     public get ordersProgress(): OrdersProgressStatus {
-        const ordersStatus = this.apiProvider.data.ordersStatus ?? this.getOrderStatusRequestStore?.data;
+        const ordersStatus = this.dataRepository.data.ordersStatus ?? this.getOrderStatusRequestStore?.data;
         const userOrderId = this.userStore.orderId?.toString() ?? "";
 
         const inProgress = ordersStatus?.inProgress ?? [];
@@ -56,7 +42,6 @@ class OrdersStore {
         return {
             inProgress: inProgress.map((order) => ({ id: order, isCurrent: isCurrentUserOrder(order, userOrderId) })),
             ready: ready.map((order) => ({ id: order, isCurrent: isCurrentUserOrder(order, userOrderId) })),
-            // ready: reorderReadyOrders(ordersStatus?.ready ?? [], userOrderId)
         };
     }
 }

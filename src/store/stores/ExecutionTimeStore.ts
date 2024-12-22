@@ -1,19 +1,19 @@
-import { makeObservable, observable, action, runInAction, computed } from "mobx"
-import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
+import { makeObservable, computed } from "mobx"
+import RuntimeDataStore from "../core/RuntimeDataStore";
+import { } from "../../api/socketApiListner";
+import { RuntimeDataType } from "../types/RuntimeDataType";
 
 class ExecutionTimeStore {
-    private apiProvider: SocketApiProvider;
-
-    constructor(apiProvider: SocketApiProvider) {
+    constructor(
+        private runtimeDataStore: RuntimeDataStore<RuntimeDataType>,
+    ) {
         makeObservable(this, {
             time: computed,
         });
-
-        this.apiProvider = apiProvider;
     }
 
     public get time(): number | null {
-        return this.apiProvider?.data?.executionTime ?? null;
+        return this.runtimeDataStore?.data?.executionTime ?? null;
     }
 }
 

@@ -1,5 +1,4 @@
 import { makeObservable, observable, action, computed } from "mobx"
-import SocketApiProvider from "../../services/dataProvider/SocketApiProvider";
 import AuthStore from "./Auth";
 import GetCustomerOrderRequestStore from "@api/requests/getCustomerOrder/GetCustomerOrderRequestStore";
 
@@ -9,9 +8,7 @@ class UserStore {
 
     public auth: AuthStore;
 
-    private apiProvider: SocketApiProvider;
-
-    constructor(apiProvider: SocketApiProvider, auth: AuthStore) {
+    constructor(auth: AuthStore) {
         this.auth = auth;
 
         makeObservable(this, {
@@ -19,7 +16,6 @@ class UserStore {
             branchId: computed,
         });
 
-        this.apiProvider = apiProvider;
     }
 
     async fetch(): Promise<void> {
