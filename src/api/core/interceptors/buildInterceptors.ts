@@ -21,5 +21,6 @@ const buildInterceptors = (store: AppStoreType) => {
         responseInterceptor,
     };
 }
+
 export default buildInterceptors;
 

@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import AppStoreContext from "./AppStoreContext";
 import appStore from "../initStore";
-import { ApiEndpointSingletone } from "@api/core/apiEndpoint";
+import ApiEndpointSingletone from "@api/core/ApiEndpointSingletone";
 
 interface PropsType {
     children: React.ReactNode;

@@ -1,6 +1,6 @@
 import { computed, makeObservable, observable, runInAction } from 'mobx';
-import { ApiEndpointSingletone } from './apiEndpoint';
-import { AxiosInstance } from 'axios';
+import ApiEndpointSingletone from './ApiEndpointSingletone';
+import ApiEndpoint from './apiEndpoint';
 
 type RequestOptionsType = {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -8,8 +8,6 @@ type RequestOptionsType = {
     useParams?: boolean;
     cacheTimeInSeconds?: number;
 };
-
-console.log("RequestStore");
 
 /*
     TODO:
@@ -23,7 +21,7 @@ class RequestStore<RequestDataType, ResponseDataType> {
     public error: any = null;
     private options: RequestOptionsType;
     private cacheTimestamp: number | null = null;
-    static apiEndpoint: AxiosInstance;
+    static apiEndpoint: ApiEndpoint;
 
     constructor(options: RequestOptionsType) {
         this.options = options;

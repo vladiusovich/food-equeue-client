@@ -1,43 +1,34 @@
 import axios, { AxiosInstance } from "axios";
-import appConfig from "../../config/appConfig";
-import buildInterceptors from "./interceptors/interceptors"
+import buildInterceptors from "./interceptors/buildInterceptors"
 import AppStoreType from "../../store/AppStoreType";
 
-class ApiEndpointSingletone {
-    private static instance: AxiosInstance;
-
-    private static store: AppStoreType;
-
-    public static setStore(store: AppStoreType) {
-        ApiEndpointSingletone.store = store;
-    }
-
-    public static getInstance(): AxiosInstance {
-        if (!ApiEndpointSingletone.store) {
-            throw new Error("Store is not set");
-        }
-
-        if (!ApiEndpointSingletone.instance) {
-            ApiEndpointSingletone.instance = axios.create({
-                baseURL: appConfig.api.apiUrl,
-                timeout: 3000,
-            });
-
-            const interceptors = buildInterceptors(ApiEndpointSingletone.store);
-
-            ApiEndpointSingletone.instance.interceptors.request.use(
-                interceptors.requestInterceptor.onFulfilled,
-                interceptors.requestInterceptor.onRejected
-            );
-
-            ApiEndpointSingletone.instance.interceptors.response.use(
-                interceptors.responseInterceptor.onFulfilled,
-                interceptors.responseInterceptor.onRejected
-            );
-        }
-
-        return ApiEndpointSingletone.instance;
-    }
+export interface ApiEndpointOptions {
+    store: AppStoreType;
+    baseURL: string;
+    timeout: number;
 }
 
-export { ApiEndpointSingletone };
+export default class ApiEndpoint {
+    private instance: AxiosInstance;
+
+    constructor(options: ApiEndpointOptions) {
+        this.instance = axios.create({
+            ...options,
+        });
+
+        const interceptors = buildInterceptors(options.store);
+
+        this.instance.interceptors.request.use(
+            interceptors.requestInterceptor.onFulfilled,
+            interceptors.requestInterceptor.onRejected
+        );
+
+        this.instance.interceptors.response.use(
+            interceptors.responseInterceptor.onFulfilled,
+            interceptors.responseInterceptor.onRejected
+        );
+    }
+    public request = <T>(config: any) => {
+        return this.instance.request<T>(config);
+    }
+}
