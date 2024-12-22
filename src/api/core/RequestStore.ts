@@ -1,5 +1,5 @@
 import { makeObservable, observable, runInAction } from 'mobx';
-import instance from './instanceApi';
+import apiEndpoint from './apiEndpoint';
 
 type RequestOptionsType = {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -44,7 +44,7 @@ class RequestStore<RequestDataType, ResponseDataType> {
         });
 
         try {
-            const response = await instance.request<ResponseDataType>({
+            const response = await apiEndpoint.request<ResponseDataType>({
                 ...this.options,
                 data: this.options.useParams ? undefined : data,
                 params: this.options.useParams ? data : undefined,
@@ -60,7 +60,8 @@ class RequestStore<RequestDataType, ResponseDataType> {
                 this.error = error;
             });
 
-            throw error;
+            // TODO: Implement error resolver
+            // throw error;
         } finally {
             runInAction(() => {
                 this.loading = false;

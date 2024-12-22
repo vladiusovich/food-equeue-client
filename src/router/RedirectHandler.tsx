@@ -14,6 +14,8 @@ const RedirectHandler: React.FC = () => {
             navigate(appRoutes.customerProcess, { state: { hash }, replace: true });
             return;
         }
+
+        navigate(appRoutes.guest, { replace: true });
     }, [appStore, appStore.user.auth.isLoggedIn, hash]);
 
     return null;
