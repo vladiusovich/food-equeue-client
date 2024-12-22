@@ -1,9 +1,8 @@
 import { ACCESS_TOKEN } from "../../../const/authConstans";
+import { InterceptorFuncType } from "./builder/Interceptor";
 
-export const attachToken = (value: any) => {
+export const attachToken: InterceptorFuncType = (value: any) => {
     const token = localStorage.getItem(ACCESS_TOKEN);
-
-    console.debug('tokenRequestInterceptor', value);
 
     if (token) {
         value.headers['Authorization'] = `Bearer ${token}`;

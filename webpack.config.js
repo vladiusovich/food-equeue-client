@@ -84,7 +84,8 @@ module.exports = (env, process) => {
                 },
             ]
         },
-        // devtool: 'cheap-module-source-map', // Set the devtool for debugging
+        mode: 'development',
+        devtool: 'inline-source-map',
         plugins: [
             new HtmlWebpackPlugin({
                 template: './public/index.html'

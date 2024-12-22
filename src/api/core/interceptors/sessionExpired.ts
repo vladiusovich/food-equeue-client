@@ -1,11 +1,10 @@
-import appRoutes from "../../../router/routes";
-export const sessionExpired = (error: any) => {
+import AppStoreType from "../../../store/AppStoreType";
+import { InterceptorFuncType } from "./builder/Interceptor";
+
+export const sessionExpired: InterceptorFuncType = (error: any, store?: AppStoreType) => {
     if (error?.response?.status === 401) {
         console.debug('sessionExpired', error);
-
-        // TODO:
-        window.location.href = appRoutes.root;
-
+        store?.user.auth.logout();
         return;
     }
 

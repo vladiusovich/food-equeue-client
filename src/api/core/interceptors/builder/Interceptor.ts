@@ -1,25 +1,35 @@
-export type InterceptorType = (value: any) => void;
+import AppStoreType from "../../../../store/AppStoreType";
+
+export type InterceptorFuncType = (value: any, store?: AppStoreType) => void;
 
 class Interceptor {
     constructor(
-        private fulfilledInterceptors: InterceptorType[],
-        private rejectedInterceptors: InterceptorType[],
+        private store: AppStoreType,
+        private fulfilledInterceptors: InterceptorFuncType[],
+        private rejectedInterceptors: InterceptorFuncType[],
     ) { }
 
     public onFulfilled = async (value: any) => {
         this.fulfilledInterceptors.forEach((callback) => {
-            callback(value);
+            callback(value, this.store);
         });
 
         return Promise.resolve(value);
     }
 
     public onRejected = async (error: any) => {
-        this.rejectedInterceptors.forEach((callback) => {
-            callback(error);
+        const errors = this.rejectedInterceptors.map((callback) => {
+            return callback(error, this.store);
         });
 
-        return Promise.reject(error);
+        const prolongError = errors.find((error) => error !== undefined);
+
+        // If any of the interceptors prolongs the error, return it
+        if (prolongError) {
+            return Promise.resolve(prolongError);
+        }
+
+        return;
     }
 }
 

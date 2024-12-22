@@ -1,21 +1,25 @@
 import { attachToken } from "./attachToken";
 import { sessionExpired } from "./sessionExpired";
-import InterceptorBuilder from "./builder/ResponseInterceptor";
+import InterceptorBuilder from "./builder/InterceptorBuilder";
+import AppStoreType from "../../../store/AppStoreType";
 
-// request interceptor
-const requestInterceptorBuilder = new InterceptorBuilder();
-requestInterceptorBuilder.addFulfilled(attachToken);
+const buildInterceptors = (store: AppStoreType) => {
+    // request interceptor
+    const requestInterceptorBuilder = new InterceptorBuilder(store);
+    requestInterceptorBuilder.addFulfilled(attachToken);
 
-const requestInterceptor = requestInterceptorBuilder.build();
+    const requestInterceptor = requestInterceptorBuilder.build();
 
-// response interceptor
-const responseInterceptorBuilder = new InterceptorBuilder();
-responseInterceptorBuilder.addRejected(sessionExpired);
+    // response interceptor
+    const responseInterceptorBuilder = new InterceptorBuilder(store);
+    responseInterceptorBuilder.addRejected(sessionExpired);
 
-const responseInterceptor = responseInterceptorBuilder.build();
+    const responseInterceptor = responseInterceptorBuilder.build();
 
-export default {
-    requestInterceptor,
-    responseInterceptor,
-};
+    return {
+        requestInterceptor,
+        responseInterceptor,
+    };
+}
+export default buildInterceptors;
 

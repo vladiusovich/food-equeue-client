@@ -18,4 +18,6 @@ const appStore: AppStoreType = {
     orders
 };
 
+console.log("init appStore", appStore);
+
 export default appStore;

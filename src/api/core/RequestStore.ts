@@ -1,5 +1,6 @@
-import { makeObservable, observable, runInAction } from 'mobx';
-import apiEndpoint from './apiEndpoint';
+import { computed, makeObservable, observable, runInAction } from 'mobx';
+import { ApiEndpointSingletone } from './apiEndpoint';
+import { AxiosInstance } from 'axios';
 
 type RequestOptionsType = {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -7,6 +8,8 @@ type RequestOptionsType = {
     useParams?: boolean;
     cacheTimeInSeconds?: number;
 };
+
+console.log("RequestStore");
 
 /*
     TODO:
@@ -20,6 +23,7 @@ class RequestStore<RequestDataType, ResponseDataType> {
     public error: any = null;
     private options: RequestOptionsType;
     private cacheTimestamp: number | null = null;
+    static apiEndpoint: AxiosInstance;
 
     constructor(options: RequestOptionsType) {
         this.options = options;
@@ -27,8 +31,13 @@ class RequestStore<RequestDataType, ResponseDataType> {
         makeObservable(this, {
             data: observable,
             loading: observable,
+            apiEndpoint: computed,
             error: observable,
         });
+    }
+
+    public get apiEndpoint() {
+        return ApiEndpointSingletone.getInstance();
     }
 
     private isCacheValid() {
@@ -44,14 +53,14 @@ class RequestStore<RequestDataType, ResponseDataType> {
         });
 
         try {
-            const response = await apiEndpoint.request<ResponseDataType>({
+            const response = await this.apiEndpoint.request<ResponseDataType>({
                 ...this.options,
                 data: this.options.useParams ? undefined : data,
                 params: this.options.useParams ? data : undefined,
             });
 
             runInAction(() => {
-                this.data = response.data;
+                this.data = response?.data;
             });
 
             this.cacheTimestamp = Date.now();
@@ -60,8 +69,7 @@ class RequestStore<RequestDataType, ResponseDataType> {
                 this.error = error;
             });
 
-            // TODO: Implement error resolver
-            // throw error;
+            throw error;
         } finally {
             runInAction(() => {
                 this.loading = false;

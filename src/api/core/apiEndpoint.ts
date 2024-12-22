@@ -1,20 +1,43 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import appConfig from "../../config/appConfig";
-import interceptors from "./interceptors/interceptors"
+import buildInterceptors from "./interceptors/interceptors"
+import AppStoreType from "../../store/AppStoreType";
 
-const apiEndpoint = axios.create({
-    baseURL: appConfig.api.apiUrl,
-    timeout: 3000,
-});
+class ApiEndpointSingletone {
+    private static instance: AxiosInstance;
 
-apiEndpoint.interceptors.request.use(
-    interceptors.requestInterceptor.onFulfilled,
-    interceptors.requestInterceptor.onRejected
-);
+    private static store: AppStoreType;
 
-apiEndpoint.interceptors.response.use(
-    interceptors.responseInterceptor.onFulfilled,
-    interceptors.responseInterceptor.onRejected
-);
+    public static setStore(store: AppStoreType) {
+        ApiEndpointSingletone.store = store;
+    }
 
-export default apiEndpoint;
+    public static getInstance(): AxiosInstance {
+        if (!ApiEndpointSingletone.store) {
+            throw new Error("Store is not set");
+        }
+
+        if (!ApiEndpointSingletone.instance) {
+            ApiEndpointSingletone.instance = axios.create({
+                baseURL: appConfig.api.apiUrl,
+                timeout: 3000,
+            });
+
+            const interceptors = buildInterceptors(ApiEndpointSingletone.store);
+
+            ApiEndpointSingletone.instance.interceptors.request.use(
+                interceptors.requestInterceptor.onFulfilled,
+                interceptors.requestInterceptor.onRejected
+            );
+
+            ApiEndpointSingletone.instance.interceptors.response.use(
+                interceptors.responseInterceptor.onFulfilled,
+                interceptors.responseInterceptor.onRejected
+            );
+        }
+
+        return ApiEndpointSingletone.instance;
+    }
+}
+
+export { ApiEndpointSingletone };
