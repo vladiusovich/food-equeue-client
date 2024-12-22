@@ -1,9 +1,9 @@
 import appConfig from "../../config/appConfig";
 import AppStoreType from "../../store/AppStoreType";
-import ApiEndpoint from "./apiEndpoint";
+import ApiEndpointInstance from "./ApiEndpointInstance";
 
 class ApiEndpointSingletone {
-    private static instance: ApiEndpoint;
+    private static instance: ApiEndpointInstance;
 
     private static store: AppStoreType;
 
@@ -11,13 +11,13 @@ class ApiEndpointSingletone {
         ApiEndpointSingletone.store = store;
     }
 
-    public static getInstance(): ApiEndpoint {
+    public static getInstance(): ApiEndpointInstance {
         if (!ApiEndpointSingletone.store) {
             throw new Error("Store is not set");
         }
 
         if (!ApiEndpointSingletone.instance) {
-            ApiEndpointSingletone.instance = new ApiEndpoint({
+            ApiEndpointSingletone.instance = new ApiEndpointInstance({
                 store: ApiEndpointSingletone.store,
                 baseURL: appConfig.api.apiUrl,
                 timeout: 3000,

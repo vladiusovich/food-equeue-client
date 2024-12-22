@@ -1,6 +1,6 @@
 import { computed, makeObservable, observable, runInAction } from 'mobx';
 import ApiEndpointSingletone from './ApiEndpointSingletone';
-import ApiEndpoint from './apiEndpoint';
+import ApiEndpointInstance from './ApiEndpointInstance';
 
 type RequestOptionsType = {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -21,7 +21,7 @@ class RequestStore<RequestDataType, ResponseDataType> {
     public error: any = null;
     private options: RequestOptionsType;
     private cacheTimestamp: number | null = null;
-    static apiEndpoint: ApiEndpoint;
+    static apiEndpoint: ApiEndpointInstance;
 
     constructor(options: RequestOptionsType) {
         this.options = options;

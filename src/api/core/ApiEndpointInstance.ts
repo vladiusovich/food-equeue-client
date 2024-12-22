@@ -8,7 +8,7 @@ export interface ApiEndpointOptions {
     timeout: number;
 }
 
-export default class ApiEndpoint {
+export default class ApiEndpointInstance {
     private instance: AxiosInstance;
 
     constructor(options: ApiEndpointOptions) {
