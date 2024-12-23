@@ -6,7 +6,32 @@ import OrdersProgressStatus from "@type/orders/OrdersProgressStatus";
 import RuntimeDataStore from "../core/RuntimeDataStore";
 import { RuntimeDataType } from "../types/RuntimeDataType";
 
+type OrderStateType = {
+    id: string;
+    isCurrent: boolean;
+};
+
 const isCurrentUserOrder = (orderId: string | number, userOrderId: string | number) => (orderId === userOrderId);
+
+const mapOrders = (orders: string[], userOrderId: string): OrderStateType[] => {
+    return orders
+        .map((order) => ({
+            id: order,
+            isCurrent: isCurrentUserOrder(order, userOrderId)
+        }));
+};
+
+const sortForBoard = (a: OrderStateType, b: OrderStateType) => {
+    if (a.isCurrent && !b.isCurrent) {
+        return -1;
+    }
+
+    if (!a.isCurrent && b.isCurrent) {
+        return 1;
+    }
+
+    return parseInt(b.id) - parseInt(a.id);
+};
 
 class OrdersStore {
     public executionTime: ExecutionTimeStore;
@@ -40,8 +65,8 @@ class OrdersStore {
         const ready = ordersStatus?.ready ?? [];
 
         return {
-            inProgress: inProgress.map((order) => ({ id: order, isCurrent: isCurrentUserOrder(order, userOrderId) })),
-            ready: ready.map((order) => ({ id: order, isCurrent: isCurrentUserOrder(order, userOrderId) })),
+            inProgress: mapOrders(inProgress, userOrderId).sort(sortForBoard),
+            ready: mapOrders(ready, userOrderId).sort(sortForBoard),
         };
     }
 }

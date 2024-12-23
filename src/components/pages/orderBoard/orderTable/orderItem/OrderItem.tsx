@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import UI from "@ui";
+import S from "./OrderItem.styled";
 
 interface Props {
     value: string | number;
@@ -12,7 +12,11 @@ const OrderItem: React.FC<Props> = ({
     isCurrent,
 }) => {
     return (
-        <UI.Chip label={value} variant={isCurrent ? undefined : "outlined"} />
+        <S.chip
+            label={value}
+            variant={isCurrent ? undefined : "outlined"}
+            $isCurrent={isCurrent}
+        />
     );
 }
 

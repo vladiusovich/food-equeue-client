@@ -13,7 +13,7 @@ const OrdersColumn: React.FC<Props> = ({
     return (
         <UI.Stack direction="column" alignItems="center" gap={1}>
             <UI.Typography variant="bold"> {title} </UI.Typography>
-            <UI.Stack direction="column" gap={1} alignItems="stretch">
+            <UI.Stack direction="row" gap={1} alignItems="stretch">
                 {children}
             </UI.Stack>
         </UI.Stack >

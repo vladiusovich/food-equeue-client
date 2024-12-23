@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 const S = {
     container: styled.main`
-        min-height: calc(100vh - 56px);
-        box-sizing: border-box;
         margin: 20px 15px;
 
         @media (min-width: 768px) {
@@ -16,7 +14,7 @@ const S = {
     content: styled.div`
         display: flex;
         flex-direction: column;
-        height: 100%;
+        min-height: calc(100vh - 56px);
     `,
 };
 
